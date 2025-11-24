@@ -1,1 +1,755 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#2563eb">
+    <title>Badminton - Parcours de formation</title>
+    <link rel="manifest" href="./manifest.json">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .header .emoji {
+            font-size: 4rem;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            margin-bottom: 20px;
+        }
+        
+        .level-selector {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .level-btn {
+            padding: 30px 20px;
+            border: none;
+            border-radius: 15px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            color: white;
+        }
+        
+        .level-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        .level-1-2 { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        .level-3 { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); }
+        .level-4-5 { background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); }
+        
+        .chapters {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .chapter {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .chapter:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        
+        .chapter-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .chapter-level {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        
+        .situations {
+            display: grid;
+            gap: 15px;
+        }
+        
+        .situation {
+            background: #f9fafb;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #2563eb;
+        }
+        
+        .situation-title {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #1f2937;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .situation-type {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: bold;
+        }
+        
+        .type-decontextualisee {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+        
+        .type-match {
+            background: #fef3c7;
+            color: #92400e;
+        }
+        
+        .situation-content {
+            color: #4b5563;
+            line-height: 1.6;
+        }
+        
+        .situation-objectif {
+            background: #dcfce7;
+            padding: 10px 15px;
+            border-radius: 8px;
+            margin-top: 10px;
+            color: #166534;
+            font-weight: 500;
+        }
+        
+        .btn {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin: 5px;
+        }
+        
+        .btn-primary {
+            background: #2563eb;
+            color: white;
+        }
+        
+        .btn-secondary {
+            background: #6b7280;
+            color: white;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        .students-section {
+            background: #eff6ff;
+            padding: 20px;
+            border-radius: 15px;
+            margin-top: 20px;
+        }
+        
+        .student-input {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .student-input input {
+            flex: 1;
+            min-width: 200px;
+            padding: 12px;
+            border: 2px solid #cbd5e1;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+        
+        .student-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .student-item {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .student-name {
+            font-weight: bold;
+            color: #1f2937;
+        }
+        
+        .student-trials {
+            display: flex;
+            gap: 5px;
+        }
+        
+        .trial {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            font-weight: bold;
+            cursor: pointer;
+            border: 2px solid #cbd5e1;
+            background: white;
+        }
+        
+        .trial.success {
+            background: #22c55e;
+            color: white;
+            border-color: #22c55e;
+        }
+        
+        .trial.fail {
+            background: #ef4444;
+            color: white;
+            border-color: #ef4444;
+        }
+        
+        .results-section {
+            background: #f0fdf4;
+            padding: 20px;
+            border-radius: 15px;
+            margin-top: 20px;
+        }
+        
+        .result-item {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .success-rate {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        
+        .success-rate.high { color: #22c55e; }
+        .success-rate.medium { color: #f59e0b; }
+        .success-rate.low { color: #ef4444; }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.8rem;
+            }
+            .level-selector {
+                grid-template-columns: 1fr;
+            }
+            .chapters {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="app"></div>
+    </div>
+
+    <script>
+        // Données des chapitres et situations
+        const chaptersData = [
+            {
+                id: 1,
+                title: "Contact volant-raquette",
+                levels: [1, 2],
+                situations: [
+                    {
+                        title: "Jonglage avec la raquette",
+                        type: "decontextualisee",
+                        objectif: "Maintenir le volant en l'air en utilisant uniquement la raquette",
+                        consignes: "🏸 Faire rebondir le volant sur la raquette (côté cordage) le plus longtemps possible\n⬆️ Le volant doit monter à hauteur de tête minimum\n✋ Pas de rattrapage avec la main"
+                    },
+                    {
+                        title: "Match avec bonus jonglage",
+                        type: "match",
+                        objectif: "Gagner des points bonus en faisant 3 jongles avant de servir",
+                        consignes: "⚔️ Match normal en simple\n🎁 +1 point bonus si vous faites 3 jongles réussis avant de servir\n🏸 Les jongles doivent être faits côté cordage uniquement"
+                    }
+                ]
+            },
+            {
+                id: 2,
+                title: "Déplacement",
+                levels: [1, 2, 3, 4, 5],
+                situations: [
+                    {
+                        title: "Déplacement en étoile",
+                        type: "decontextualisee",
+                        objectif: "Se déplacer rapidement sur tous les coins du terrain",
+                        consignes: "⭐ Partez du centre du terrain\n🎯 Touchez chaque coin (4 coins) avec votre raquette\n🏃 Revenez au centre après chaque coin\n⏱️ Chronométrez-vous sur 30 secondes"
+                    },
+                    {
+                        title: "Match avec zone interdite centrale",
+                        type: "match",
+                        objectif: "Forcer les déplacements en interdisant de rester au centre",
+                        consignes: "⚔️ Match en simple\n🚫 Zone centrale (2m de rayon) interdite\n⏱️ Maximum 2 secondes dans la zone, sinon point adverse\n🏃 Forces le déplacement constant"
+                    }
+                ]
+            },
+            {
+                id: 3,
+                title: "Frappes de défense (dégagements)",
+                levels: [3, 4, 5],
+                situations: [
+                    {
+                        title: "Dégagements en fond de court",
+                        type: "decontextualisee",
+                        objectif: "Envoyer des volants hauts au fond du terrain adverse",
+                        consignes: "🎯 Placez-vous en fond de court\n⬆️ Envoyez des dégagements hauts vers le fond adverse\n📏 Le volant doit retomber dans les 2 derniers mètres\n✅ Validé si 5 sur 10 sont bons"
+                    },
+                    {
+                        title: "Match dégagement obligatoire",
+                        type: "match",
+                        objectif: "Utiliser les dégagements pour gagner du temps",
+                        consignes: "⚔️ Match en simple\n⬆️ Tous les coups au fond de court doivent être des dégagements hauts\n❌ Si frappe tendue au fond = point pour l'adversaire\n🎁 +1 point si dégagement gagnant direct"
+                    }
+                ]
+            },
+            {
+                id: 4,
+                title: "Revers",
+                levels: [3, 4, 5],
+                situations: [
+                    {
+                        title: "Revers en ligne",
+                        type: "decontextualisee",
+                        objectif: "Maîtriser la frappe en revers",
+                        consignes: "🎯 Côté revers du terrain (gauche pour droitier)\n🏸 10 volants lancés doucement par un partenaire\n✋ Obligation de frapper en revers (pas de tour de poignet)\n📊 Comptez combien passent le filet"
+                    },
+                    {
+                        title: "Match point double revers",
+                        type: "match",
+                        objectif: "Valoriser l'utilisation du revers",
+                        consignes: "⚔️ Match en simple\n🏆 Point compté double s'il est marqué en revers\n⚠️ L'adversaire doit valider que c'était bien un revers\n🎯 Encourage à ne pas contourner en coup droit"
+                    }
+                ]
+            },
+            {
+                id: 5,
+                title: "Smash - Technique",
+                levels: [2, 3, 4, 5],
+                situations: [
+                    {
+                        title: "Smash sur cible",
+                        type: "decontextualisee",
+                        objectif: "Frapper fort et précis",
+                        consignes: "🎯 Cibles au sol dans la zone avant adverse\n🏸 10 volants lancés hauts par un partenaire\n⚡ Smashez en direction des cibles\n📊 Comptez les cibles touchées"
+                    },
+                    {
+                        title: "Match smash gagnant",
+                        type: "match",
+                        objectif: "Marquer des points directs en smash",
+                        consignes: "⚔️ Match en simple\n⚡ +2 points si le smash est gagnant direct (sans retour)\n🎯 Le smash doit rebondir dans la zone avant (avant ligne de service)\n🏆 Encourage les smashs puissants et placés"
+                    }
+                ]
+            },
+            {
+                id: 6,
+                title: "Smash - Moment opportun",
+                levels: [2, 3, 4, 5],
+                situations: [
+                    {
+                        title: "Reconnaissance des opportunités",
+                        type: "decontextualisee",
+                        objectif: "Identifier quand smasher",
+                        consignes: "👥 Par 2 : un joueur envoie des volants variés\n✅ L'autre doit smasher UNIQUEMENT si le volant est haut et court\n❌ Si smash sur un volant tendu ou bas = échec\n📊 Comptez les bons choix sur 15 volants"
+                    },
+                    {
+                        title: "Match smash interdit au fond",
+                        type: "match",
+                        objectif: "Choisir le bon moment pour smasher",
+                        consignes: "⚔️ Match en simple\n🚫 Smash interdit au fond de court (après ligne de service double)\n✅ Smash autorisé uniquement zone avant et milieu\n⚠️ Smash au fond = point adverse\n🎯 Force à attendre le bon moment"
+                    }
+                ]
+            },
+            {
+                id: 7,
+                title: "Smash - Placement",
+                levels: [2, 3, 4, 5],
+                situations: [
+                    {
+                        title: "Smash sur zones ciblées",
+                        type: "decontextualisee",
+                        objectif: "Diriger le smash précisément",
+                        consignes: "🎯 4 zones matérialisées dans le terrain adverse\n🏸 10 volants lancés hauts\n⚡ Annoncez la zone avant de smasher\n✅ Point si smash atteint la zone annoncée"
+                    },
+                    {
+                        title: "Match smash zones dangereuses",
+                        type: "match",
+                        objectif: "Smasher dans les espaces libres",
+                        consignes: "⚔️ Match en simple\n🎯 +3 points si smash gagnant dans un coin (avant gauche ou avant droit)\n🎯 +2 points si smash gagnant au centre\n🎯 +1 point si smash gagnant ailleurs\n📍 Valorise le placement intelligent"
+                    }
+                ]
+            }
+        ];
+
+        // État de l'application
+        let currentView = 'levels';
+        let selectedLevel = null;
+        let selectedChapter = null;
+        let selectedSituation = null;
+        let students = JSON.parse(localStorage.getItem('badminton_students') || '[]');
+        let results = JSON.parse(localStorage.getItem('badminton_results') || '{}');
+
+        // Fonction principale de rendu
+        function render() {
+            const app = document.getElementById('app');
+            
+            if (currentView === 'levels') {
+                app.innerHTML = renderLevelsView();
+            } else if (currentView === 'chapters') {
+                app.innerHTML = renderChaptersView();
+            } else if (currentView === 'situations') {
+                app.innerHTML = renderSituationsView();
+            } else if (currentView === 'situation-detail') {
+                app.innerHTML = renderSituationDetailView();
+            }
+            
+            attachEventListeners();
+        }
+
+        // Vue de sélection des niveaux
+        function renderLevelsView() {
+            return `
+                <div class="header">
+                    <div class="emoji">🏸</div>
+                    <h1>Badminton - Parcours de formation</h1>
+                    <p>Application pédagogique CAPEPS</p>
+                </div>
+                <div class="card">
+                    <h2 style="margin-bottom: 20px; color: #1f2937;">Sélectionnez le niveau des élèves :</h2>
+                    <div class="level-selector">
+                        <button class="level-btn level-1-2" onclick="selectLevel([1,2])">
+                            <div style="font-size: 1.5rem; margin-bottom: 10px;">🎯</div>
+                            <div>Niveaux 1-2</div>
+                            <div style="font-size: 0.9rem; opacity: 0.9; margin-top: 5px;">Débutants</div>
+                        </button>
+                        <button class="level-btn level-3" onclick="selectLevel([3])">
+                            <div style="font-size: 1.5rem; margin-bottom: 10px;">⭐</div>
+                            <div>Niveau 3</div>
+                            <div style="font-size: 0.9rem; opacity: 0.9; margin-top: 5px;">Intermédiaires</div>
+                        </button>
+                        <button class="level-btn level-4-5" onclick="selectLevel([4,5])">
+                            <div style="font-size: 1.5rem; margin-bottom: 10px;">🏆</div>
+                            <div>Niveaux 4-5</div>
+                            <div style="font-size: 0.9rem; opacity: 0.9; margin-top: 5px;">Avancés</div>
+                        </button>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Vue des chapitres
+        function renderChaptersView() {
+            const filteredChapters = chaptersData.filter(chapter => 
+                chapter.levels.some(level => selectedLevel.includes(level))
+            );
+
+            return `
+                <div class="header">
+                    <div class="emoji">🏸</div>
+                    <h1>Chapitres disponibles</h1>
+                    <p>Niveau(x) : ${selectedLevel.join(', ')}</p>
+                </div>
+                <div class="card">
+                    <button class="btn btn-secondary" onclick="backToLevels()">← Retour aux niveaux</button>
+                    <h2 style="margin: 20px 0; color: #1f2937;">${filteredChapters.length} chapitre(s) disponible(s)</h2>
+                    <div class="chapters">
+                        ${filteredChapters.map(chapter => `
+                            <div class="chapter" onclick="selectChapter(${chapter.id})">
+                                <div class="chapter-title">${chapter.title}</div>
+                                <div class="chapter-level">Niveaux ${chapter.levels.join(', ')}</div>
+                                <div style="margin-top: 10px; font-size: 0.9rem;">
+                                    ${chapter.situations.length} situation(s) d'apprentissage
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+        }
+
+        // Vue des situations
+        function renderSituationsView() {
+            const chapter = chaptersData.find(c => c.id === selectedChapter);
+            
+            return `
+                <div class="header">
+                    <div class="emoji">🏸</div>
+                    <h1>${chapter.title}</h1>
+                    <p>Situations d'apprentissage</p>
+                </div>
+                <div class="card">
+                    <button class="btn btn-secondary" onclick="backToChapters()">← Retour aux chapitres</button>
+                    <h2 style="margin: 20px 0; color: #1f2937;">${chapter.situations.length} situation(s)</h2>
+                    <div class="situations">
+                        ${chapter.situations.map((situation, index) => `
+                            <div class="situation" onclick="selectSituation(${selectedChapter}, ${index})">
+                                <div class="situation-title">
+                                    ${situation.title}
+                                    <span class="situation-type type-${situation.type}">
+                                        ${situation.type === 'decontextualisee' ? '🎯 Décontextualisée' : '⚔️ Match'}
+                                    </span>
+                                </div>
+                                <div class="situation-objectif">
+                                    <strong>Objectif :</strong> ${situation.objectif}
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+        }
+
+        // Vue détail situation avec gestion élèves
+        function renderSituationDetailView() {
+            const chapter = chaptersData.find(c => c.id === selectedChapter);
+            const situation = chapter.situations[selectedSituation];
+            const situationKey = `${selectedChapter}-${selectedSituation}`;
+            const situationResults = results[situationKey] || {};
+            
+            return `
+                <div class="header">
+                    <div class="emoji">🏸</div>
+                    <h1>${situation.title}</h1>
+                    <p>${chapter.title}</p>
+                </div>
+                <div class="card">
+                    <button class="btn btn-secondary" onclick="backToSituations()">← Retour aux situations</button>
+                    
+                    <div style="margin: 30px 0; padding: 20px; background: #eff6ff; border-radius: 15px; border-left: 4px solid #2563eb;">
+                        <h3 style="color: #1e40af; margin-bottom: 10px;">📋 Consignes</h3>
+                        <div style="white-space: pre-line; color: #1f2937; line-height: 1.8;">
+${situation.consignes}
+                        </div>
+                    </div>
+                    
+                    <div class="students-section">
+                        <h3 style="color: #1f2937; margin-bottom: 15px;">👥 Gestion des élèves</h3>
+                        <div class="student-input">
+                            <input type="text" id="student-firstname" placeholder="Prénom" />
+                            <input type="text" id="student-lastname" placeholder="Nom" />
+                            <button class="btn btn-primary" onclick="addStudent()">Ajouter</button>
+                        </div>
+                        
+                        <div class="student-list">
+                            ${students.map((student, index) => {
+                                const studentResults = situationResults[student.id] || [];
+                                const successCount = studentResults.filter(r => r).length;
+                                const successRate = studentResults.length > 0 ? Math.round((successCount / studentResults.length) * 100) : 0;
+                                const rateClass = successRate >= 70 ? 'high' : successRate >= 40 ? 'medium' : 'low';
+                                
+                                return `
+                                    <div class="student-item">
+                                        <div>
+                                            <div class="student-name">${student.firstname} ${student.lastname}</div>
+                                            <div style="font-size: 0.85rem; color: #6b7280; margin-top: 5px;">
+                                                Taux de réussite : <span class="success-rate ${rateClass}">${successRate}%</span>
+                                            </div>
+                                        </div>
+                                        <div class="student-trials">
+                                            ${[0, 1, 2].map(trialIndex => {
+                                                const result = studentResults[trialIndex];
+                                                const className = result === true ? 'trial success' : result === false ? 'trial fail' : 'trial';
+                                                const display = result === true ? '✓' : result === false ? '✗' : (trialIndex + 1);
+                                                return `<div class="${className}" onclick="toggleTrial('${student.id}', ${trialIndex})">${display}</div>`;
+                                            }).join('')}
+                                        </div>
+                                    </div>
+                                `;
+                            }).join('')}
+                        </div>
+                    </div>
+                    
+                    ${students.length > 0 ? `
+                        <div class="results-section">
+                            <h3 style="color: #166534; margin-bottom: 15px;">📊 Résultats globaux</h3>
+                            ${renderGlobalResults(situationKey)}
+                        </div>
+                    ` : ''}
+                </div>
+            `;
+        }
+
+        function renderGlobalResults(situationKey) {
+            const situationResults = results[situationKey] || {};
+            let totalTrials = 0;
+            let totalSuccess = 0;
+            
+            students.forEach(student => {
+                const studentResults = situationResults[student.id] || [];
+                totalTrials += studentResults.length;
+                totalSuccess += studentResults.filter(r => r).length;
+            });
+            
+            const globalRate = totalTrials > 0 ? Math.round((totalSuccess / totalTrials) * 100) : 0;
+            const rateClass = globalRate >= 70 ? 'high' : globalRate >= 40 ? 'medium' : 'low';
+            
+            return `
+                <div class="result-item">
+                    <div>
+                        <div style="font-weight: bold; color: #1f2937; margin-bottom: 5px;">Taux de réussite global</div>
+                        <div style="font-size: 0.9rem; color: #6b7280;">${totalSuccess} réussites sur ${totalTrials} essais</div>
+                    </div>
+                    <div class="success-rate ${rateClass}">${globalRate}%</div>
+                </div>
+            `;
+        }
+
+        // Fonctions de navigation
+        function selectLevel(level) {
+            selectedLevel = level;
+            currentView = 'chapters';
+            render();
+        }
+
+        function selectChapter(chapterId) {
+            selectedChapter = chapterId;
+            currentView = 'situations';
+            render();
+        }
+
+        function selectSituation(chapterId, situationIndex) {
+            selectedChapter = chapterId;
+            selectedSituation = situationIndex;
+            currentView = 'situation-detail';
+            render();
+        }
+
+        function backToLevels() {
+            currentView = 'levels';
+            render();
+        }
+
+        function backToChapters() {
+            currentView = 'chapters';
+            render();
+        }
+
+        function backToSituations() {
+            currentView = 'situations';
+            render();
+        }
+
+        // Gestion des élèves
+        function addStudent() {
+            const firstname = document.getElementById('student-firstname').value.trim();
+            const lastname = document.getElementById('student-lastname').value.trim();
+            
+            if (firstname && lastname) {
+                const student = {
+                    id: Date.now().toString(),
+                    firstname: firstname,
+                    lastname: lastname
+                };
+                students.push(student);
+                localStorage.setItem('badminton_students', JSON.stringify(students));
+                render();
+            }
+        }
+
+        function toggleTrial(studentId, trialIndex) {
+            const situationKey = `${selectedChapter}-${selectedSituation}`;
+            if (!results[situationKey]) results[situationKey] = {};
+            if (!results[situationKey][studentId]) results[situationKey][studentId] = [];
+            
+            const currentValue = results[situationKey][studentId][trialIndex];
+            
+            if (currentValue === undefined) {
+                results[situationKey][studentId][trialIndex] = true;
+            } else if (currentValue === true) {
+                results[situationKey][studentId][trialIndex] = false;
+            } else {
+                results[situationKey][studentId][trialIndex] = undefined;
+            }
+            
+            localStorage.setItem('badminton_results', JSON.stringify(results));
+            render();
+        }
+
+        // Attacher les événements
+        function attachEventListeners() {
+            // Les événements onclick sont déjà dans le HTML
+        }
+
+        // Enregistrer le Service Worker
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./service-worker.js')
+                    .then(reg => console.log('✅ Service Worker enregistré'))
+                    .catch(err => console.log('Service Worker:', err));
+            });
+        }
+
+        // Démarrer l'application
+        render();
+    </script>
+</body>
+</html>
 
