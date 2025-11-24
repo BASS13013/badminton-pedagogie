@@ -42,6 +42,29 @@
             font-size: 4rem;
         }
         
+        .header-nav {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 15px;
+        }
+        
+        .nav-btn {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border: 2px solid white;
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .nav-btn:hover {
+            background: white;
+            color: #667eea;
+        }
+        
         .card {
             background: white;
             border-radius: 20px;
@@ -183,6 +206,16 @@
             color: white;
         }
         
+        .btn-success {
+            background: #22c55e;
+            color: white;
+        }
+        
+        .btn-danger {
+            background: #ef4444;
+            color: white;
+        }
+        
         .btn:hover {
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(0,0,0,0.2);
@@ -217,72 +250,86 @@
         
         .student-list {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 10px;
-            margin-top: 15px;
+            gap: 15px;
         }
         
         .student-item {
             background: white;
-            padding: 15px;
+            padding: 20px;
             border-radius: 8px;
+        }
+        
+        .student-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            margin-bottom: 15px;
         }
         
         .student-name {
             font-weight: bold;
             color: #1f2937;
+            font-size: 1.1rem;
         }
         
-        .student-trials {
+        .trial-controls {
             display: flex;
-            gap: 5px;
-        }
-        
-        .trial {
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            display: flex;
+            gap: 10px;
             align-items: center;
-            justify-content: center;
-            font-size: 0.9rem;
+        }
+        
+        .trial-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: none;
+            font-size: 1.5rem;
             font-weight: bold;
             cursor: pointer;
-            border: 2px solid #cbd5e1;
-            background: white;
+            transition: all 0.3s;
         }
         
-        .trial.success {
+        .trial-btn:hover {
+            transform: scale(1.1);
+        }
+        
+        .btn-add-success {
             background: #22c55e;
             color: white;
-            border-color: #22c55e;
         }
         
-        .trial.fail {
+        .btn-add-fail {
             background: #ef4444;
             color: white;
-            border-color: #ef4444;
         }
         
-        .results-section {
-            background: #f0fdf4;
-            padding: 20px;
-            border-radius: 15px;
-            margin-top: 20px;
-        }
-        
-        .result-item {
-            background: white;
+        .trial-stats {
+            background: #f3f4f6;
             padding: 15px;
             border-radius: 8px;
-            margin-bottom: 10px;
             display: flex;
-            justify-content: space-between;
+            justify-content: space-around;
             align-items: center;
         }
+        
+        .trial-stat {
+            text-align: center;
+        }
+        
+        .trial-stat-value {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .trial-stat-label {
+            font-size: 0.85rem;
+            color: #6b7280;
+        }
+        
+        .success-color { color: #22c55e; }
+        .fail-color { color: #ef4444; }
+        .total-color { color: #2563eb; }
         
         .success-rate {
             font-size: 1.5rem;
@@ -293,6 +340,94 @@
         .success-rate.medium { color: #f59e0b; }
         .success-rate.low { color: #ef4444; }
         
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .stat-card {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            border-left: 4px solid #2563eb;
+        }
+        
+        .stat-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .stat-student-name {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #1f2937;
+        }
+        
+        .stat-overall {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        
+        .stat-section {
+            margin-top: 15px;
+        }
+        
+        .stat-section-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+            padding: 8px 12px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .acquired {
+            background: #dcfce7;
+            color: #166534;
+        }
+        
+        .to-improve {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+        
+        .stat-item {
+            padding: 10px;
+            background: #f9fafb;
+            border-radius: 6px;
+            margin-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .stat-item-name {
+            color: #4b5563;
+        }
+        
+        .stat-item-rate {
+            font-weight: bold;
+        }
+        
+        .reset-btn {
+            background: #dc2626;
+            color: white;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        
+        .reset-btn:hover {
+            background: #b91c1c;
+        }
+        
         @media (max-width: 768px) {
             .header h1 {
                 font-size: 1.8rem;
@@ -301,6 +436,9 @@
                 grid-template-columns: 1fr;
             }
             .chapters {
+                grid-template-columns: 1fr;
+            }
+            .stats-grid {
                 grid-template-columns: 1fr;
             }
         }
@@ -469,6 +607,10 @@
                 app.innerHTML = renderSituationsView();
             } else if (currentView === 'situation-detail') {
                 app.innerHTML = renderSituationDetailView();
+            } else if (currentView === 'statistics') {
+                app.innerHTML = renderStatisticsView();
+            } else if (currentView === 'manage-students') {
+                app.innerHTML = renderManageStudentsView();
             }
             
             attachEventListeners();
@@ -480,7 +622,10 @@
                 <div class="header">
                     <div class="emoji">🏸</div>
                     <h1>Badminton - Parcours de formation</h1>
-                    <p>Application pédagogique CAPEPS</p>
+                    <div class="header-nav">
+                        <button class="nav-btn" onclick="showManageStudents()">👥 Gérer les élèves</button>
+                        <button class="nav-btn" onclick="showStatistics()">📊 Statistiques</button>
+                    </div>
                 </div>
                 <div class="card">
                     <h2 style="margin-bottom: 20px; color: #1f2937;">Sélectionnez le niveau des élèves :</h2>
@@ -516,6 +661,10 @@
                     <div class="emoji">🏸</div>
                     <h1>Chapitres disponibles</h1>
                     <p>Niveau(x) : ${selectedLevel.join(', ')}</p>
+                    <div class="header-nav">
+                        <button class="nav-btn" onclick="showManageStudents()">👥 Gérer les élèves</button>
+                        <button class="nav-btn" onclick="showStatistics()">📊 Statistiques</button>
+                    </div>
                 </div>
                 <div class="card">
                     <button class="btn btn-secondary" onclick="backToLevels()">← Retour aux niveaux</button>
@@ -544,6 +693,10 @@
                     <div class="emoji">🏸</div>
                     <h1>${chapter.title}</h1>
                     <p>Situations d'apprentissage</p>
+                    <div class="header-nav">
+                        <button class="nav-btn" onclick="showManageStudents()">👥 Gérer les élèves</button>
+                        <button class="nav-btn" onclick="showStatistics()">📊 Statistiques</button>
+                    </div>
                 </div>
                 <div class="card">
                     <button class="btn btn-secondary" onclick="backToChapters()">← Retour aux chapitres</button>
@@ -579,6 +732,10 @@
                     <div class="emoji">🏸</div>
                     <h1>${situation.title}</h1>
                     <p>${chapter.title}</p>
+                    <div class="header-nav">
+                        <button class="nav-btn" onclick="showManageStudents()">👥 Gérer les élèves</button>
+                        <button class="nav-btn" onclick="showStatistics()">📊 Statistiques</button>
+                    </div>
                 </div>
                 <div class="card">
                     <button class="btn btn-secondary" onclick="backToSituations()">← Retour aux situations</button>
@@ -600,66 +757,250 @@ ${situation.consignes}
                         
                         <div class="student-list">
                             ${students.map((student, index) => {
-                                const studentResults = situationResults[student.id] || [];
-                                const successCount = studentResults.filter(r => r).length;
-                                const successRate = studentResults.length > 0 ? Math.round((successCount / studentResults.length) * 100) : 0;
+                                const studentResults = situationResults[student.id] || { successes: 0, failures: 0 };
+                                const total = studentResults.successes + studentResults.failures;
+                                const successRate = total > 0 ? Math.round((studentResults.successes / total) * 100) : 0;
                                 const rateClass = successRate >= 70 ? 'high' : successRate >= 40 ? 'medium' : 'low';
                                 
                                 return `
                                     <div class="student-item">
-                                        <div>
+                                        <div class="student-header">
                                             <div class="student-name">${student.firstname} ${student.lastname}</div>
-                                            <div style="font-size: 0.85rem; color: #6b7280; margin-top: 5px;">
-                                                Taux de réussite : <span class="success-rate ${rateClass}">${successRate}%</span>
-                                            </div>
                                         </div>
-                                        <div class="student-trials">
-                                            ${[0, 1, 2].map(trialIndex => {
-                                                const result = studentResults[trialIndex];
-                                                const className = result === true ? 'trial success' : result === false ? 'trial fail' : 'trial';
-                                                const display = result === true ? '✓' : result === false ? '✗' : (trialIndex + 1);
-                                                return `<div class="${className}" onclick="toggleTrial('${student.id}', ${trialIndex})">${display}</div>`;
-                                            }).join('')}
+                                        
+                                        <div class="trial-controls">
+                                            <button class="trial-btn btn-add-success" onclick="addSuccess('${student.id}')">+</button>
+                                            <div style="text-align: center;">
+                                                <div style="font-size: 0.85rem; color: #6b7280; margin-bottom: 5px;">Réussi</div>
+                                                <div style="font-size: 1.3rem; font-weight: bold; color: #22c55e;">${studentResults.successes}</div>
+                                            </div>
+                                            <button class="trial-btn btn-add-fail" onclick="addFailure('${student.id}')">-</button>
+                                            <div style="text-align: center;">
+                                                <div style="font-size: 0.85rem; color: #6b7280; margin-bottom: 5px;">Échec</div>
+                                                <div style="font-size: 1.3rem; font-weight: bold; color: #ef4444;">${studentResults.failures}</div>
+                                            </div>
+                                            <button class="btn-secondary" style="padding: 8px 16px; border-radius: 6px; margin-left: 10px;" onclick="resetStudentResults('${student.id}')">↺ Reset</button>
+                                        </div>
+                                        
+                                        <div class="trial-stats" style="margin-top: 15px;">
+                                            <div class="trial-stat">
+                                                <div class="trial-stat-value total-color">${total}</div>
+                                                <div class="trial-stat-label">Total essais</div>
+                                            </div>
+                                            <div class="trial-stat">
+                                                <div class="trial-stat-value ${rateClass}">${successRate}%</div>
+                                                <div class="trial-stat-label">Taux de réussite</div>
+                                            </div>
                                         </div>
                                     </div>
                                 `;
                             }).join('')}
                         </div>
                     </div>
-                    
-                    ${students.length > 0 ? `
-                        <div class="results-section">
-                            <h3 style="color: #166534; margin-bottom: 15px;">📊 Résultats globaux</h3>
-                            ${renderGlobalResults(situationKey)}
-                        </div>
-                    ` : ''}
                 </div>
             `;
         }
 
-        function renderGlobalResults(situationKey) {
-            const situationResults = results[situationKey] || {};
-            let totalTrials = 0;
-            let totalSuccess = 0;
-            
-            students.forEach(student => {
-                const studentResults = situationResults[student.id] || [];
-                totalTrials += studentResults.length;
-                totalSuccess += studentResults.filter(r => r).length;
-            });
-            
-            const globalRate = totalTrials > 0 ? Math.round((totalSuccess / totalTrials) * 100) : 0;
-            const rateClass = globalRate >= 70 ? 'high' : globalRate >= 40 ? 'medium' : 'low';
-            
+        // Vue de gestion des élèves
+        function renderManageStudentsView() {
             return `
-                <div class="result-item">
-                    <div>
-                        <div style="font-weight: bold; color: #1f2937; margin-bottom: 5px;">Taux de réussite global</div>
-                        <div style="font-size: 0.9rem; color: #6b7280;">${totalSuccess} réussites sur ${totalTrials} essais</div>
+                <div class="header">
+                    <div class="emoji">👥</div>
+                    <h1>Gestion des élèves</h1>
+                    <p>Ajouter, modifier ou supprimer des élèves</p>
+                </div>
+                <div class="card">
+                    <button class="btn btn-secondary" onclick="backToLevels()">← Retour à l'accueil</button>
+                    
+                    <div style="margin: 30px 0; padding: 20px; background: #eff6ff; border-radius: 15px;">
+                        <h3 style="color: #1f2937; margin-bottom: 15px;">➕ Ajouter un élève</h3>
+                        <div class="student-input">
+                            <input type="text" id="student-firstname" placeholder="Prénom" />
+                            <input type="text" id="student-lastname" placeholder="Nom" />
+                            <button class="btn btn-primary" onclick="addStudentFromManage()">Ajouter</button>
+                        </div>
                     </div>
-                    <div class="success-rate ${rateClass}">${globalRate}%</div>
+                    
+                    ${students.length > 0 ? `
+                        <div style="margin: 30px 0;">
+                            <h3 style="color: #1f2937; margin-bottom: 15px;">📋 Liste des élèves (${students.length})</h3>
+                            <div class="student-list">
+                                ${students.map(student => {
+                                    const stats = calculateStudentStats(student.id);
+                                    return `
+                                        <div class="student-item">
+                                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                                <div>
+                                                    <div class="student-name">${student.firstname} ${student.lastname}</div>
+                                                    <div style="font-size: 0.85rem; color: #6b7280; margin-top: 5px;">
+                                                        ${stats.totalTrials > 0 ? 
+                                                            `${stats.totalSuccesses} réussites / ${stats.totalTrials} essais` : 
+                                                            'Aucune donnée enregistrée'
+                                                        }
+                                                    </div>
+                                                </div>
+                                                <button class="btn btn-danger" style="padding: 10px 20px;" onclick="deleteStudent('${student.id}')">
+                                                    🗑️ Supprimer
+                                                </button>
+                                            </div>
+                                        </div>
+                                    `;
+                                }).join('')}
+                            </div>
+                        </div>
+                        
+                        <div style="margin: 40px 0; padding: 20px; background: #fef2f2; border-radius: 15px; border-left: 4px solid #dc2626;">
+                            <h3 style="color: #991b1b; margin-bottom: 15px;">⚠️ Zone dangereuse</h3>
+                            <p style="color: #6b7280; margin-bottom: 15px;">
+                                Les actions ci-dessous sont irréversibles. Soyez certain avant de cliquer.
+                            </p>
+                            <button class="btn btn-danger" onclick="deleteAllData()">
+                                🗑️ Supprimer toutes les données (élèves + résultats)
+                            </button>
+                        </div>
+                    ` : `
+                        <div style="text-align: center; padding: 60px 20px; color: #6b7280;">
+                            <div style="font-size: 3rem; margin-bottom: 20px;">👥</div>
+                            <h3>Aucun élève enregistré</h3>
+                            <p style="margin-top: 10px;">Ajoutez votre premier élève ci-dessus pour commencer.</p>
+                        </div>
+                    `}
                 </div>
             `;
+        }
+
+        // Vue des statistiques
+        function renderStatisticsView() {
+            if (students.length === 0) {
+                return `
+                    <div class="header">
+                        <div class="emoji">📊</div>
+                        <h1>Statistiques</h1>
+                        <p>Vue d'ensemble par élève</p>
+                    </div>
+                    <div class="card">
+                        <button class="btn btn-secondary" onclick="backToLevels()">← Retour à l'accueil</button>
+                        <div style="text-align: center; padding: 60px 20px; color: #6b7280;">
+                            <div style="font-size: 3rem; margin-bottom: 20px;">👥</div>
+                            <h3>Aucun élève enregistré</h3>
+                            <p style="margin-top: 10px;">Ajoutez des élèves dans les situations pour voir leurs statistiques ici.</p>
+                        </div>
+                    </div>
+                `;
+            }
+
+            return `
+                <div class="header">
+                    <div class="emoji">📊</div>
+                    <h1>Statistiques</h1>
+                    <p>Vue d'ensemble par élève</p>
+                </div>
+                <div class="card">
+                    <button class="btn btn-secondary" onclick="backToLevels()">← Retour à l'accueil</button>
+                    <h2 style="margin: 20px 0; color: #1f2937;">${students.length} élève(s) suivi(s)</h2>
+                    
+                    <div class="stats-grid">
+                        ${students.map(student => {
+                            const studentStats = calculateStudentStats(student.id);
+                            const overallRate = studentStats.totalTrials > 0 ? 
+                                Math.round((studentStats.totalSuccesses / studentStats.totalTrials) * 100) : 0;
+                            const overallClass = overallRate >= 70 ? 'high' : overallRate >= 40 ? 'medium' : 'low';
+                            
+                            return `
+                                <div class="stat-card">
+                                    <div class="stat-header">
+                                        <div class="stat-student-name">${student.firstname} ${student.lastname}</div>
+                                        <div class="stat-overall ${overallClass}">${overallRate}%</div>
+                                    </div>
+                                    
+                                    <div style="font-size: 0.9rem; color: #6b7280; margin-bottom: 20px;">
+                                        ${studentStats.totalSuccesses} réussites / ${studentStats.totalTrials} essais
+                                    </div>
+                                    
+                                    ${studentStats.acquired.length > 0 ? `
+                                        <div class="stat-section">
+                                            <div class="stat-section-title acquired">
+                                                ✅ Points acquis (≥70%)
+                                            </div>
+                                            ${studentStats.acquired.map(item => `
+                                                <div class="stat-item">
+                                                    <div class="stat-item-name">${item.name}</div>
+                                                    <div class="stat-item-rate success-color">${item.rate}%</div>
+                                                </div>
+                                            `).join('')}
+                                        </div>
+                                    ` : ''}
+                                    
+                                    ${studentStats.toImprove.length > 0 ? `
+                                        <div class="stat-section">
+                                            <div class="stat-section-title to-improve">
+                                                📈 À améliorer (<70%)
+                                            </div>
+                                            ${studentStats.toImprove.map(item => `
+                                                <div class="stat-item">
+                                                    <div class="stat-item-name">${item.name}</div>
+                                                    <div class="stat-item-rate fail-color">${item.rate}%</div>
+                                                </div>
+                                            `).join('')}
+                                        </div>
+                                    ` : ''}
+                                    
+                                    ${studentStats.acquired.length === 0 && studentStats.toImprove.length === 0 ? `
+                                        <div style="text-align: center; padding: 20px; color: #6b7280;">
+                                            Aucune donnée enregistrée
+                                        </div>
+                                    ` : ''}
+                                </div>
+                            `;
+                        }).join('')}
+                    </div>
+                </div>
+            `;
+        }
+
+        // Calculer les statistiques d'un élève
+        function calculateStudentStats(studentId) {
+            let totalSuccesses = 0;
+            let totalTrials = 0;
+            const acquired = [];
+            const toImprove = [];
+            
+            Object.keys(results).forEach(situationKey => {
+                const [chapterId, situationIndex] = situationKey.split('-');
+                const chapter = chaptersData.find(c => c.id === parseInt(chapterId));
+                if (!chapter) return;
+                
+                const situation = chapter.situations[parseInt(situationIndex)];
+                const studentResults = results[situationKey][studentId];
+                
+                if (studentResults && (studentResults.successes > 0 || studentResults.failures > 0)) {
+                    const successes = studentResults.successes;
+                    const failures = studentResults.failures;
+                    const trials = successes + failures;
+                    const rate = Math.round((successes / trials) * 100);
+                    
+                    totalSuccesses += successes;
+                    totalTrials += trials;
+                    
+                    const item = {
+                        name: `${chapter.title} - ${situation.title}`,
+                        rate: rate
+                    };
+                    
+                    if (rate >= 70) {
+                        acquired.push(item);
+                    } else {
+                        toImprove.push(item);
+                    }
+                }
+            });
+            
+            return {
+                totalSuccesses,
+                totalTrials,
+                acquired,
+                toImprove
+            };
         }
 
         // Fonctions de navigation
@@ -679,6 +1020,16 @@ ${situation.consignes}
             selectedChapter = chapterId;
             selectedSituation = situationIndex;
             currentView = 'situation-detail';
+            render();
+        }
+
+        function showStatistics() {
+            currentView = 'statistics';
+            render();
+        }
+
+        function showManageStudents() {
+            currentView = 'manage-students';
             render();
         }
 
@@ -714,23 +1065,94 @@ ${situation.consignes}
             }
         }
 
-        function toggleTrial(studentId, trialIndex) {
+        function addStudentFromManage() {
+            const firstname = document.getElementById('student-firstname').value.trim();
+            const lastname = document.getElementById('student-lastname').value.trim();
+            
+            if (firstname && lastname) {
+                const student = {
+                    id: Date.now().toString(),
+                    firstname: firstname,
+                    lastname: lastname
+                };
+                students.push(student);
+                localStorage.setItem('badminton_students', JSON.stringify(students));
+                render();
+            } else {
+                alert('Veuillez remplir le prénom et le nom');
+            }
+        }
+
+        function deleteStudent(studentId) {
+            const student = students.find(s => s.id === studentId);
+            if (!student) return;
+            
+            const confirmMsg = `Êtes-vous sûr de vouloir supprimer ${student.firstname} ${student.lastname} ?\n\n⚠️ Toutes ses données (résultats dans toutes les situations) seront définitivement supprimées.`;
+            
+            if (confirm(confirmMsg)) {
+                // Supprimer l'élève de la liste
+                students = students.filter(s => s.id !== studentId);
+                localStorage.setItem('badminton_students', JSON.stringify(students));
+                
+                // Supprimer tous les résultats de cet élève
+                Object.keys(results).forEach(situationKey => {
+                    if (results[situationKey][studentId]) {
+                        delete results[situationKey][studentId];
+                    }
+                });
+                localStorage.setItem('badminton_results', JSON.stringify(results));
+                
+                render();
+            }
+        }
+
+        function deleteAllData() {
+            const confirmMsg = `⚠️ ATTENTION ⚠️\n\nVoulez-vous vraiment supprimer TOUTES les données ?\n\n- Tous les élèves (${students.length})\n- Tous les résultats de toutes les situations\n\nCette action est IRRÉVERSIBLE !`;
+            
+            if (confirm(confirmMsg)) {
+                const doubleConfirm = confirm('Dernière confirmation : Êtes-vous VRAIMENT sûr ?\n\nTout sera supprimé définitivement.');
+                
+                if (doubleConfirm) {
+                    students = [];
+                    results = {};
+                    localStorage.setItem('badminton_students', JSON.stringify(students));
+                    localStorage.setItem('badminton_results', JSON.stringify(results));
+                    alert('✅ Toutes les données ont été supprimées.');
+                    render();
+                }
+            }
+        }
+
+        // Gestion des essais
+        function addSuccess(studentId) {
             const situationKey = `${selectedChapter}-${selectedSituation}`;
             if (!results[situationKey]) results[situationKey] = {};
-            if (!results[situationKey][studentId]) results[situationKey][studentId] = [];
+            if (!results[situationKey][studentId]) results[situationKey][studentId] = { successes: 0, failures: 0 };
             
-            const currentValue = results[situationKey][studentId][trialIndex];
-            
-            if (currentValue === undefined) {
-                results[situationKey][studentId][trialIndex] = true;
-            } else if (currentValue === true) {
-                results[situationKey][studentId][trialIndex] = false;
-            } else {
-                results[situationKey][studentId][trialIndex] = undefined;
-            }
-            
+            results[situationKey][studentId].successes++;
             localStorage.setItem('badminton_results', JSON.stringify(results));
             render();
+        }
+
+        function addFailure(studentId) {
+            const situationKey = `${selectedChapter}-${selectedSituation}`;
+            if (!results[situationKey]) results[situationKey] = {};
+            if (!results[situationKey][studentId]) results[situationKey][studentId] = { successes: 0, failures: 0 };
+            
+            results[situationKey][studentId].failures++;
+            localStorage.setItem('badminton_results', JSON.stringify(results));
+            render();
+        }
+
+        function resetStudentResults(studentId) {
+            if (confirm('Réinitialiser les résultats de cet élève pour cette situation ?')) {
+                const situationKey = `${selectedChapter}-${selectedSituation}`;
+                if (results[situationKey] && results[situationKey][studentId]) {
+                    results[situationKey][studentId] = { successes: 0, failures: 0 };
+                    localStorage.setItem('badminton_results', JSON.stringify(results));
+                    render();
+                }
+            }
         }
 
         // Attacher les événements
@@ -752,4 +1174,3 @@ ${situation.consignes}
     </script>
 </body>
 </html>
-
