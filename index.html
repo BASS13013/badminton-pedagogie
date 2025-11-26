@@ -47,6 +47,7 @@
             gap: 10px;
             justify-content: center;
             margin-top: 15px;
+            flex-wrap: wrap;
         }
         
         .nav-btn {
@@ -126,11 +127,6 @@
             margin-bottom: 10px;
         }
         
-        .chapter-level {
-            font-size: 0.9rem;
-            opacity: 0.8;
-        }
-        
         .situations {
             display: grid;
             gap: 15px;
@@ -141,6 +137,13 @@
             padding: 20px;
             border-radius: 10px;
             border-left: 4px solid #2563eb;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .situation:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transform: translateX(5px);
         }
         
         .situation-title {
@@ -171,11 +174,6 @@
             color: #92400e;
         }
         
-        .situation-content {
-            color: #4b5563;
-            line-height: 1.6;
-        }
-        
         .situation-objectif {
             background: #dcfce7;
             padding: 10px 15px;
@@ -196,34 +194,162 @@
             margin: 5px;
         }
         
-        .btn-primary {
-            background: #2563eb;
-            color: white;
-        }
-        
-        .btn-secondary {
-            background: #6b7280;
-            color: white;
-        }
-        
-        .btn-success {
-            background: #22c55e;
-            color: white;
-        }
-        
-        .btn-danger {
-            background: #ef4444;
-            color: white;
-        }
+        .btn-primary { background: #2563eb; color: white; }
+        .btn-secondary { background: #6b7280; color: white; }
+        .btn-success { background: #22c55e; color: white; }
+        .btn-danger { background: #ef4444; color: white; }
         
         .btn:hover {
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
         
-        .hidden {
-            display: none;
+        .hidden { display: none; }
+        
+        /* Timer */
+        .timer-display {
+            font-size: 4rem;
+            font-weight: bold;
+            text-align: center;
+            color: #2563eb;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
         }
+        
+        .timer-display.warning { color: #f59e0b; }
+        .timer-display.danger { color: #ef4444; animation: pulse 1s infinite; }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        
+        .timer-controls {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .rotation-indicator {
+            background: #eff6ff;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            margin: 15px 0;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #1e40af;
+        }
+        
+        /* Warmup */
+        .warmup-step {
+            background: #f9fafb;
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            border-left: 5px solid #2563eb;
+        }
+        
+        .warmup-step-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #1f2937;
+            margin-bottom: 15px;
+        }
+        
+        .checklist {
+            display: grid;
+            gap: 10px;
+            margin: 15px 0;
+        }
+        
+        .checklist-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px;
+            background: white;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .checklist-item:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+        .checklist-item.checked { background: #dcfce7; }
+        
+        .checkbox {
+            width: 30px;
+            height: 30px;
+            border: 3px solid #cbd5e1;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+        
+        .checklist-item.checked .checkbox {
+            background: #22c55e;
+            border-color: #22c55e;
+            color: white;
+        }
+        
+        .exercise-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        
+        .exercise-name {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #1f2937;
+            margin: 15px 0;
+        }
+        
+        .exercise-illustration {
+            width: 200px;
+            height: 200px;
+            margin: 20px auto;
+        }
+        
+        .step-navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+            gap: 10px;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 10px;
+            background: #e5e7eb;
+            border-radius: 5px;
+            overflow: hidden;
+            margin: 20px 0;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            transition: width 0.3s;
+        }
+        
+        .level-badge {
+            display: inline-block;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        
+        .level-badge.level-2 { background: #dbeafe; color: #1e40af; }
+        .level-badge.level-3 { background: #fce7f3; color: #9f1239; }
+        .level-badge.level-4-5 { background: #dcfce7; color: #166534; }
         
         .students-section {
             background: #eff6ff;
@@ -248,22 +374,12 @@
             font-size: 1rem;
         }
         
-        .student-list {
-            display: grid;
-            gap: 15px;
-        }
+        .student-list { display: grid; gap: 15px; }
         
         .student-item {
             background: white;
             padding: 20px;
             border-radius: 8px;
-        }
-        
-        .student-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
         }
         
         .student-name {
@@ -276,6 +392,8 @@
             display: flex;
             gap: 10px;
             align-items: center;
+            flex-wrap: wrap;
+            margin-top: 15px;
         }
         
         .trial-btn {
@@ -289,19 +407,9 @@
             transition: all 0.3s;
         }
         
-        .trial-btn:hover {
-            transform: scale(1.1);
-        }
-        
-        .btn-add-success {
-            background: #22c55e;
-            color: white;
-        }
-        
-        .btn-add-fail {
-            background: #ef4444;
-            color: white;
-        }
+        .trial-btn:hover { transform: scale(1.1); }
+        .btn-add-success { background: #22c55e; color: white; }
+        .btn-add-fail { background: #ef4444; color: white; }
         
         .trial-stats {
             background: #f3f4f6;
@@ -310,18 +418,15 @@
             display: flex;
             justify-content: space-around;
             align-items: center;
+            margin-top: 15px;
         }
         
-        .trial-stat {
-            text-align: center;
-        }
-        
+        .trial-stat { text-align: center; }
         .trial-stat-value {
             font-size: 2rem;
             font-weight: bold;
             margin-bottom: 5px;
         }
-        
         .trial-stat-label {
             font-size: 0.85rem;
             color: #6b7280;
@@ -331,11 +436,7 @@
         .fail-color { color: #ef4444; }
         .total-color { color: #2563eb; }
         
-        .success-rate {
-            font-size: 1.5rem;
-            font-weight: bold;
-        }
-        
+        .success-rate { font-size: 1.5rem; font-weight: bold; }
         .success-rate.high { color: #22c55e; }
         .success-rate.medium { color: #f59e0b; }
         .success-rate.low { color: #ef4444; }
@@ -353,47 +454,22 @@
             border-left: 4px solid #2563eb;
         }
         
-        .stat-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
-        }
-        
         .stat-student-name {
             font-size: 1.3rem;
             font-weight: bold;
             color: #1f2937;
         }
         
-        .stat-overall {
-            font-size: 1.5rem;
-            font-weight: bold;
-        }
-        
-        .stat-section {
-            margin-top: 15px;
-        }
-        
+        .stat-section { margin-top: 15px; }
         .stat-section-title {
             font-weight: bold;
             margin-bottom: 10px;
             padding: 8px 12px;
             border-radius: 6px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
         }
         
-        .acquired {
-            background: #dcfce7;
-            color: #166534;
-        }
-        
-        .to-improve {
-            background: #fee2e2;
-            color: #991b1b;
-        }
+        .acquired { background: #dcfce7; color: #166534; }
+        .to-improve { background: #fee2e2; color: #991b1b; }
         
         .stat-item {
             padding: 10px;
@@ -402,45 +478,12 @@
             margin-bottom: 8px;
             display: flex;
             justify-content: space-between;
-            align-items: center;
-        }
-        
-        .stat-item-name {
-            color: #4b5563;
-        }
-        
-        .stat-item-rate {
-            font-weight: bold;
-        }
-        
-        .reset-btn {
-            background: #dc2626;
-            color: white;
-            padding: 8px 16px;
-            border: none;
-            border-radius: 6px;
-            font-size: 0.9rem;
-            cursor: pointer;
-            margin-top: 10px;
-        }
-        
-        .reset-btn:hover {
-            background: #b91c1c;
         }
         
         @media (max-width: 768px) {
-            .header h1 {
-                font-size: 1.8rem;
-            }
-            .level-selector {
-                grid-template-columns: 1fr;
-            }
-            .chapters {
-                grid-template-columns: 1fr;
-            }
-            .stats-grid {
-                grid-template-columns: 1fr;
-            }
+            .header h1 { font-size: 1.8rem; }
+            .level-selector, .chapters, .stats-grid { grid-template-columns: 1fr; }
+            .timer-display { font-size: 3rem; }
         }
     </style>
 </head>
@@ -450,7 +493,42 @@
     </div>
 
     <script>
-        // Données des chapitres et situations
+        // Audio Context pour les bips
+        let audioContext = null;
+        
+        function initAudio() {
+            if (!audioContext) {
+                audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            }
+        }
+        
+        function playBeep(duration = 200, frequency = 800) {
+            initAudio();
+            const oscillator = audioContext.createOscillator();
+            const gainNode = audioContext.createGain();
+            
+            oscillator.connect(gainNode);
+            gainNode.connect(audioContext.destination);
+            
+            oscillator.frequency.value = frequency;
+            oscillator.type = 'sine';
+            
+            gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+            gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + duration / 1000);
+            
+            oscillator.start(audioContext.currentTime);
+            oscillator.stop(audioContext.currentTime + duration / 1000);
+        }
+        
+        function playLongBeep() {
+            playBeep(500, 600);
+        }
+        
+        function playShortBeep() {
+            playBeep(200, 800);
+        }
+
+        // Données
         const chaptersData = [
             {
                 id: 1,
@@ -460,14 +538,16 @@
                     {
                         title: "Jonglage avec la raquette",
                         type: "decontextualisee",
-                        objectif: "Maintenir le volant en l'air en utilisant uniquement la raquette",
-                        consignes: "🏸 Faire rebondir le volant sur la raquette (côté cordage) le plus longtemps possible\n⬆️ Le volant doit monter à hauteur de tête minimum\n✋ Pas de rattrapage avec la main"
+                        objectif: "Maintenir le volant en l'air",
+                        consignes: "🏸 Faire rebondir le volant sur la raquette\n⬆️ Le volant doit monter à hauteur de tête minimum\n✋ Pas de rattrapage avec la main",
+                        hasTimer: false
                     },
                     {
                         title: "Match avec bonus jonglage",
                         type: "match",
-                        objectif: "Gagner des points bonus en faisant 3 jongles avant de servir",
-                        consignes: "⚔️ Match normal en simple\n🎁 +1 point bonus si vous faites 3 jongles réussis avant de servir\n🏸 Les jongles doivent être faits côté cordage uniquement"
+                        objectif: "Gagner des points bonus avec 3 jongles avant de servir",
+                        consignes: "⚔️ Match normal en simple\n🎁 +1 point bonus si 3 jongles réussis avant de servir",
+                        hasTimer: false
                     }
                 ]
             },
@@ -479,33 +559,32 @@
                     {
                         title: "Déplacement en étoile",
                         type: "decontextualisee",
-                        objectif: "Se déplacer rapidement sur tous les coins du terrain",
-                        consignes: "⭐ Partez du centre du terrain\n🎯 Touchez chaque coin (4 coins) avec votre raquette\n🏃 Revenez au centre après chaque coin\n⏱️ Chronométrez-vous sur 30 secondes"
+                        objectif: "Se déplacer rapidement sur tous les coins",
+                        consignes: "⭐ Partez du centre\n🎯 Touchez chaque coin avec votre raquette\n🏃 Revenez au centre après chaque coin\n⏱️ 30 secondes",
+                        hasTimer: true,
+                        timerDuration: 30,
+                        successCriteria: "tours complets"
                     },
                     {
-                        title: "Match avec zone interdite centrale",
+                        title: "Match avec zone interdite",
                         type: "match",
-                        objectif: "Forcer les déplacements en interdisant de rester au centre",
-                        consignes: "⚔️ Match en simple\n🚫 Zone centrale (2m de rayon) interdite\n⏱️ Maximum 2 secondes dans la zone, sinon point adverse\n🏃 Forces le déplacement constant"
+                        objectif: "Forcer les déplacements",
+                        consignes: "⚔️ Match en simple\n🚫 Zone centrale interdite\n⏱️ Max 2s dans la zone",
+                        hasTimer: false
                     }
                 ]
             },
             {
                 id: 3,
-                title: "Frappes de défense (dégagements)",
+                title: "Frappes de défense",
                 levels: [3, 4, 5],
                 situations: [
                     {
                         title: "Dégagements en fond de court",
                         type: "decontextualisee",
-                        objectif: "Envoyer des volants hauts au fond du terrain adverse",
-                        consignes: "🎯 Placez-vous en fond de court\n⬆️ Envoyez des dégagements hauts vers le fond adverse\n📏 Le volant doit retomber dans les 2 derniers mètres\n✅ Validé si 5 sur 10 sont bons"
-                    },
-                    {
-                        title: "Match dégagement obligatoire",
-                        type: "match",
-                        objectif: "Utiliser les dégagements pour gagner du temps",
-                        consignes: "⚔️ Match en simple\n⬆️ Tous les coups au fond de court doivent être des dégagements hauts\n❌ Si frappe tendue au fond = point pour l'adversaire\n🎁 +1 point si dégagement gagnant direct"
+                        objectif: "Envoyer des volants hauts au fond",
+                        consignes: "🎯 Placez-vous en fond de court\n⬆️ Dégagements hauts vers le fond\n✅ 5 sur 10 bons",
+                        hasTimer: false
                     }
                 ]
             },
@@ -518,13 +597,8 @@
                         title: "Revers en ligne",
                         type: "decontextualisee",
                         objectif: "Maîtriser la frappe en revers",
-                        consignes: "🎯 Côté revers du terrain (gauche pour droitier)\n🏸 10 volants lancés doucement par un partenaire\n✋ Obligation de frapper en revers (pas de tour de poignet)\n📊 Comptez combien passent le filet"
-                    },
-                    {
-                        title: "Match point double revers",
-                        type: "match",
-                        objectif: "Valoriser l'utilisation du revers",
-                        consignes: "⚔️ Match en simple\n🏆 Point compté double s'il est marqué en revers\n⚠️ L'adversaire doit valider que c'était bien un revers\n🎯 Encourage à ne pas contourner en coup droit"
+                        consignes: "🎯 Côté revers\n🏸 10 volants en revers\n📊 Comptez les réussites",
+                        hasTimer: false
                     }
                 ]
             },
@@ -537,13 +611,8 @@
                         title: "Smash sur cible",
                         type: "decontextualisee",
                         objectif: "Frapper fort et précis",
-                        consignes: "🎯 Cibles au sol dans la zone avant adverse\n🏸 10 volants lancés hauts par un partenaire\n⚡ Smashez en direction des cibles\n📊 Comptez les cibles touchées"
-                    },
-                    {
-                        title: "Match smash gagnant",
-                        type: "match",
-                        objectif: "Marquer des points directs en smash",
-                        consignes: "⚔️ Match en simple\n⚡ +2 points si le smash est gagnant direct (sans retour)\n🎯 Le smash doit rebondir dans la zone avant (avant ligne de service)\n🏆 Encourage les smashs puissants et placés"
+                        consignes: "🎯 Cibles au sol\n⚡ Smashez les cibles\n📊 Comptez les touches",
+                        hasTimer: false
                     }
                 ]
             },
@@ -553,16 +622,11 @@
                 levels: [2, 3, 4, 5],
                 situations: [
                     {
-                        title: "Reconnaissance des opportunités",
+                        title: "Reconnaissance opportunités",
                         type: "decontextualisee",
                         objectif: "Identifier quand smasher",
-                        consignes: "👥 Par 2 : un joueur envoie des volants variés\n✅ L'autre doit smasher UNIQUEMENT si le volant est haut et court\n❌ Si smash sur un volant tendu ou bas = échec\n📊 Comptez les bons choix sur 15 volants"
-                    },
-                    {
-                        title: "Match smash interdit au fond",
-                        type: "match",
-                        objectif: "Choisir le bon moment pour smasher",
-                        consignes: "⚔️ Match en simple\n🚫 Smash interdit au fond de court (après ligne de service double)\n✅ Smash autorisé uniquement zone avant et milieu\n⚠️ Smash au fond = point adverse\n🎯 Force à attendre le bon moment"
+                        consignes: "👥 Par 2\n✅ Smasher si volant haut et court\n❌ Pas si tendu ou bas",
+                        hasTimer: false
                     }
                 ]
             },
@@ -575,108 +639,112 @@
                         title: "Smash sur zones ciblées",
                         type: "decontextualisee",
                         objectif: "Diriger le smash précisément",
-                        consignes: "🎯 4 zones matérialisées dans le terrain adverse\n🏸 10 volants lancés hauts\n⚡ Annoncez la zone avant de smasher\n✅ Point si smash atteint la zone annoncée"
-                    },
-                    {
-                        title: "Match smash zones dangereuses",
-                        type: "match",
-                        objectif: "Smasher dans les espaces libres",
-                        consignes: "⚔️ Match en simple\n🎯 +3 points si smash gagnant dans un coin (avant gauche ou avant droit)\n🎯 +2 points si smash gagnant au centre\n🎯 +1 point si smash gagnant ailleurs\n📍 Valorise le placement intelligent"
+                        consignes: "🎯 4 zones matérialisées\n⚡ Annoncez la zone\n✅ Point si bonne zone",
+                        hasTimer: false
                     }
                 ]
             }
         ];
 
-        // État de l'application
+        const warmupExercises = [
+            { name: "Montées de genoux", emoji: "🦵", description: "Montez les genoux le plus haut possible" },
+            { name: "Talons-fesses", emoji: "🦶", description: "Ramenez les talons vers les fesses" },
+            { name: "Pas chassés", emoji: "↔️", description: "Déplacements latéraux rapides" },
+            { name: "Jumping jacks", emoji: "🤸", description: "Sauts avec écart des bras et jambes" }
+        ];
+
+        // État
         let currentView = 'levels';
         let selectedLevel = null;
         let selectedChapter = null;
         let selectedSituation = null;
         let students = JSON.parse(localStorage.getItem('badminton_students') || '[]');
         let results = JSON.parse(localStorage.getItem('badminton_results') || '{}');
+        
+        // Échauffement
+        let warmupStep = 0;
+        let warmupLevel = null;
+        let checkedJoints = [];
+        let currentExerciseIndex = 0;
+        
+        // Minuteur
+        let timerInterval = null;
+        let timeRemaining = 0;
+        let totalTime = 0;
+        let rotationCount = 0;
+        let rotationInterval = null;
 
-        // Fonction principale de rendu
+        // Render principal
         function render() {
             const app = document.getElementById('app');
             
-            if (currentView === 'levels') {
-                app.innerHTML = renderLevelsView();
-            } else if (currentView === 'chapters') {
-                app.innerHTML = renderChaptersView();
-            } else if (currentView === 'situations') {
-                app.innerHTML = renderSituationsView();
-            } else if (currentView === 'situation-detail') {
-                app.innerHTML = renderSituationDetailView();
-            } else if (currentView === 'statistics') {
-                app.innerHTML = renderStatisticsView();
-            } else if (currentView === 'manage-students') {
-                app.innerHTML = renderManageStudentsView();
-            }
-            
-            attachEventListeners();
+            if (currentView === 'levels') app.innerHTML = renderLevelsView();
+            else if (currentView === 'chapters') app.innerHTML = renderChaptersView();
+            else if (currentView === 'situations') app.innerHTML = renderSituationsView();
+            else if (currentView === 'situation-detail') app.innerHTML = renderSituationDetailView();
+            else if (currentView === 'statistics') app.innerHTML = renderStatisticsView();
+            else if (currentView === 'manage-students') app.innerHTML = renderManageStudentsView();
+            else if (currentView === 'warmup-level') app.innerHTML = renderWarmupLevelView();
+            else if (currentView === 'warmup') app.innerHTML = renderWarmupView();
         }
 
-        // Vue de sélection des niveaux
+        // Vue niveaux
         function renderLevelsView() {
             return `
                 <div class="header">
                     <div class="emoji">🏸</div>
                     <h1>Badminton - Parcours de formation</h1>
                     <div class="header-nav">
+                        <button class="nav-btn" onclick="startWarmup()">🔥 Échauffement</button>
                         <button class="nav-btn" onclick="showManageStudents()">👥 Gérer les élèves</button>
                         <button class="nav-btn" onclick="showStatistics()">📊 Statistiques</button>
                     </div>
                 </div>
                 <div class="card">
-                    <h2 style="margin-bottom: 20px; color: #1f2937;">Sélectionnez le niveau des élèves :</h2>
+                    <h2 style="margin-bottom: 20px; color: #1f2937;">Sélectionnez le niveau :</h2>
                     <div class="level-selector">
                         <button class="level-btn level-1-2" onclick="selectLevel([1,2])">
                             <div style="font-size: 1.5rem; margin-bottom: 10px;">🎯</div>
                             <div>Niveaux 1-2</div>
-                            <div style="font-size: 0.9rem; opacity: 0.9; margin-top: 5px;">Débutants</div>
+                            <div style="font-size: 0.9rem; opacity: 0.9; margin-top: 5px;">3ème / PM</div>
                         </button>
                         <button class="level-btn level-3" onclick="selectLevel([3])">
                             <div style="font-size: 1.5rem; margin-bottom: 10px;">⭐</div>
                             <div>Niveau 3</div>
-                            <div style="font-size: 0.9rem; opacity: 0.9; margin-top: 5px;">Intermédiaires</div>
+                            <div style="font-size: 0.9rem; opacity: 0.9; margin-top: 5px;">CAP</div>
                         </button>
                         <button class="level-btn level-4-5" onclick="selectLevel([4,5])">
                             <div style="font-size: 1.5rem; margin-bottom: 10px;">🏆</div>
                             <div>Niveaux 4-5</div>
-                            <div style="font-size: 0.9rem; opacity: 0.9; margin-top: 5px;">Avancés</div>
+                            <div style="font-size: 0.9rem; opacity: 0.9; margin-top: 5px;">BAC PRO</div>
                         </button>
                     </div>
                 </div>
             `;
         }
 
-        // Vue des chapitres
+        // Vue chapitres
         function renderChaptersView() {
-            const filteredChapters = chaptersData.filter(chapter => 
-                chapter.levels.some(level => selectedLevel.includes(level))
-            );
-
+            const filtered = chaptersData.filter(c => c.levels.some(l => selectedLevel.includes(l)));
             return `
                 <div class="header">
                     <div class="emoji">🏸</div>
                     <h1>Chapitres disponibles</h1>
                     <p>Niveau(x) : ${selectedLevel.join(', ')}</p>
                     <div class="header-nav">
+                        <button class="nav-btn" onclick="startWarmup()">🔥 Échauffement</button>
                         <button class="nav-btn" onclick="showManageStudents()">👥 Gérer les élèves</button>
                         <button class="nav-btn" onclick="showStatistics()">📊 Statistiques</button>
                     </div>
                 </div>
                 <div class="card">
-                    <button class="btn btn-secondary" onclick="backToLevels()">← Retour aux niveaux</button>
-                    <h2 style="margin: 20px 0; color: #1f2937;">${filteredChapters.length} chapitre(s) disponible(s)</h2>
+                    <button class="btn btn-secondary" onclick="backToLevels()">← Retour</button>
+                    <h2 style="margin: 20px 0;">${filtered.length} chapitres</h2>
                     <div class="chapters">
-                        ${filteredChapters.map(chapter => `
-                            <div class="chapter" onclick="selectChapter(${chapter.id})">
-                                <div class="chapter-title">${chapter.title}</div>
-                                <div class="chapter-level">Niveaux ${chapter.levels.join(', ')}</div>
-                                <div style="margin-top: 10px; font-size: 0.9rem;">
-                                    ${chapter.situations.length} situation(s) d'apprentissage
-                                </div>
+                        ${filtered.map(ch => `
+                            <div class="chapter" onclick="selectChapter(${ch.id})">
+                                <div class="chapter-title">${ch.title}</div>
+                                <div style="margin-top: 10px;">${ch.situations.length} situations</div>
                             </div>
                         `).join('')}
                     </div>
@@ -684,35 +752,30 @@
             `;
         }
 
-        // Vue des situations
+        // Vue situations
         function renderSituationsView() {
             const chapter = chaptersData.find(c => c.id === selectedChapter);
-            
             return `
                 <div class="header">
                     <div class="emoji">🏸</div>
                     <h1>${chapter.title}</h1>
-                    <p>Situations d'apprentissage</p>
                     <div class="header-nav">
                         <button class="nav-btn" onclick="showManageStudents()">👥 Gérer les élèves</button>
                         <button class="nav-btn" onclick="showStatistics()">📊 Statistiques</button>
                     </div>
                 </div>
                 <div class="card">
-                    <button class="btn btn-secondary" onclick="backToChapters()">← Retour aux chapitres</button>
-                    <h2 style="margin: 20px 0; color: #1f2937;">${chapter.situations.length} situation(s)</h2>
+                    <button class="btn btn-secondary" onclick="backToChapters()">← Retour</button>
                     <div class="situations">
-                        ${chapter.situations.map((situation, index) => `
-                            <div class="situation" onclick="selectSituation(${selectedChapter}, ${index})">
+                        ${chapter.situations.map((sit, i) => `
+                            <div class="situation" onclick="selectSituation(${selectedChapter}, ${i})">
                                 <div class="situation-title">
-                                    ${situation.title}
-                                    <span class="situation-type type-${situation.type}">
-                                        ${situation.type === 'decontextualisee' ? '🎯 Décontextualisée' : '⚔️ Match'}
+                                    ${sit.title}
+                                    <span class="situation-type type-${sit.type}">
+                                        ${sit.type === 'decontextualisee' ? '🎯 Décontextualisée' : '⚔️ Match'}
                                     </span>
                                 </div>
-                                <div class="situation-objectif">
-                                    <strong>Objectif :</strong> ${situation.objectif}
-                                </div>
+                                <div class="situation-objectif">${sit.objectif}</div>
                             </div>
                         `).join('')}
                     </div>
@@ -720,7 +783,7 @@
             `;
         }
 
-        // Vue détail situation avec gestion élèves
+        // Vue situation détail
         function renderSituationDetailView() {
             const chapter = chaptersData.find(c => c.id === selectedChapter);
             const situation = chapter.situations[selectedSituation];
@@ -733,22 +796,36 @@
                     <h1>${situation.title}</h1>
                     <p>${chapter.title}</p>
                     <div class="header-nav">
-                        <button class="nav-btn" onclick="showManageStudents()">👥 Gérer les élèves</button>
-                        <button class="nav-btn" onclick="showStatistics()">📊 Statistiques</button>
+                        <button class="nav-btn" onclick="showManageStudents()">👥</button>
+                        <button class="nav-btn" onclick="showStatistics()">📊</button>
                     </div>
                 </div>
                 <div class="card">
-                    <button class="btn btn-secondary" onclick="backToSituations()">← Retour aux situations</button>
+                    <button class="btn btn-secondary" onclick="backToSituations()">← Retour</button>
                     
-                    <div style="margin: 30px 0; padding: 20px; background: #eff6ff; border-radius: 15px; border-left: 4px solid #2563eb;">
-                        <h3 style="color: #1e40af; margin-bottom: 10px;">📋 Consignes</h3>
-                        <div style="white-space: pre-line; color: #1f2937; line-height: 1.8;">
-${situation.consignes}
-                        </div>
+                    <div style="margin: 30px 0; padding: 20px; background: #eff6ff; border-radius: 15px;">
+                        <h3 style="color: #1e40af;">📋 Consignes</h3>
+                        <div style="white-space: pre-line; margin-top: 10px;">${situation.consignes}</div>
                     </div>
                     
+                    ${situation.hasTimer ? `
+                        <div style="background: #fef3c7; padding: 20px; border-radius: 15px; margin: 20px 0;">
+                            <h3 style="color: #92400e;">⏱️ Minuteur</h3>
+                            <div class="timer-display" id="timer">${situation.timerDuration}:00</div>
+                            <div class="timer-controls">
+                                <button class="btn btn-success" onclick="startTimer(${situation.timerDuration})">▶️ Démarrer</button>
+                                <button class="btn btn-secondary" onclick="pauseTimer()">⏸️ Pause</button>
+                                <button class="btn btn-danger" onclick="resetTimer(${situation.timerDuration})">↺ Reset</button>
+                            </div>
+                            <div style="margin-top: 20px;">
+                                <input type="number" id="success-count" placeholder="Nombre de réussites" style="padding: 12px; border-radius: 8px; border: 2px solid #cbd5e1; width: 100%; max-width: 300px;" />
+                                <div style="margin-top: 10px; color: #6b7280;">Critère : ${situation.successCriteria || 'Comptez les réussites'}</div>
+                            </div>
+                        </div>
+                    ` : ''}
+                    
                     <div class="students-section">
-                        <h3 style="color: #1f2937; margin-bottom: 15px;">👥 Gestion des élèves</h3>
+                        <h3>👥 Élèves</h3>
                         <div class="student-input">
                             <input type="text" id="student-firstname" placeholder="Prénom" />
                             <input type="text" id="student-lastname" placeholder="Nom" />
@@ -756,40 +833,36 @@ ${situation.consignes}
                         </div>
                         
                         <div class="student-list">
-                            ${students.map((student, index) => {
+                            ${students.map(student => {
                                 const studentResults = situationResults[student.id] || { successes: 0, failures: 0 };
                                 const total = studentResults.successes + studentResults.failures;
-                                const successRate = total > 0 ? Math.round((studentResults.successes / total) * 100) : 0;
-                                const rateClass = successRate >= 70 ? 'high' : successRate >= 40 ? 'medium' : 'low';
+                                const rate = total > 0 ? Math.round((studentResults.successes / total) * 100) : 0;
+                                const rateClass = rate >= 70 ? 'high' : rate >= 40 ? 'medium' : 'low';
                                 
                                 return `
                                     <div class="student-item">
-                                        <div class="student-header">
-                                            <div class="student-name">${student.firstname} ${student.lastname}</div>
-                                        </div>
-                                        
+                                        <div class="student-name">${student.firstname} ${student.lastname}</div>
                                         <div class="trial-controls">
                                             <button class="trial-btn btn-add-success" onclick="addSuccess('${student.id}')">+</button>
                                             <div style="text-align: center;">
-                                                <div style="font-size: 0.85rem; color: #6b7280; margin-bottom: 5px;">Réussi</div>
+                                                <div style="font-size: 0.85rem; color: #6b7280;">Réussi</div>
                                                 <div style="font-size: 1.3rem; font-weight: bold; color: #22c55e;">${studentResults.successes}</div>
                                             </div>
                                             <button class="trial-btn btn-add-fail" onclick="addFailure('${student.id}')">-</button>
                                             <div style="text-align: center;">
-                                                <div style="font-size: 0.85rem; color: #6b7280; margin-bottom: 5px;">Échec</div>
+                                                <div style="font-size: 0.85rem; color: #6b7280;">Échec</div>
                                                 <div style="font-size: 1.3rem; font-weight: bold; color: #ef4444;">${studentResults.failures}</div>
                                             </div>
-                                            <button class="btn-secondary" style="padding: 8px 16px; border-radius: 6px; margin-left: 10px;" onclick="resetStudentResults('${student.id}')">↺ Reset</button>
+                                            <button class="btn-secondary" style="padding: 8px 16px; border-radius: 6px;" onclick="resetStudentResults('${student.id}')">↺</button>
                                         </div>
-                                        
-                                        <div class="trial-stats" style="margin-top: 15px;">
+                                        <div class="trial-stats">
                                             <div class="trial-stat">
                                                 <div class="trial-stat-value total-color">${total}</div>
-                                                <div class="trial-stat-label">Total essais</div>
+                                                <div class="trial-stat-label">Total</div>
                                             </div>
                                             <div class="trial-stat">
-                                                <div class="trial-stat-value ${rateClass}">${successRate}%</div>
-                                                <div class="trial-stat-label">Taux de réussite</div>
+                                                <div class="trial-stat-value ${rateClass}">${rate}%</div>
+                                                <div class="trial-stat-label">Réussite</div>
                                             </div>
                                         </div>
                                     </div>
@@ -801,153 +874,59 @@ ${situation.consignes}
             `;
         }
 
-        // Vue de gestion des élèves
-        function renderManageStudentsView() {
-            return `
-                <div class="header">
-                    <div class="emoji">👥</div>
-                    <h1>Gestion des élèves</h1>
-                    <p>Ajouter, modifier ou supprimer des élèves</p>
-                </div>
-                <div class="card">
-                    <button class="btn btn-secondary" onclick="backToLevels()">← Retour à l'accueil</button>
-                    
-                    <div style="margin: 30px 0; padding: 20px; background: #eff6ff; border-radius: 15px;">
-                        <h3 style="color: #1f2937; margin-bottom: 15px;">➕ Ajouter un élève</h3>
-                        <div class="student-input">
-                            <input type="text" id="student-firstname" placeholder="Prénom" />
-                            <input type="text" id="student-lastname" placeholder="Nom" />
-                            <button class="btn btn-primary" onclick="addStudentFromManage()">Ajouter</button>
-                        </div>
-                    </div>
-                    
-                    ${students.length > 0 ? `
-                        <div style="margin: 30px 0;">
-                            <h3 style="color: #1f2937; margin-bottom: 15px;">📋 Liste des élèves (${students.length})</h3>
-                            <div class="student-list">
-                                ${students.map(student => {
-                                    const stats = calculateStudentStats(student.id);
-                                    return `
-                                        <div class="student-item">
-                                            <div style="display: flex; justify-content: space-between; align-items: center;">
-                                                <div>
-                                                    <div class="student-name">${student.firstname} ${student.lastname}</div>
-                                                    <div style="font-size: 0.85rem; color: #6b7280; margin-top: 5px;">
-                                                        ${stats.totalTrials > 0 ? 
-                                                            `${stats.totalSuccesses} réussites / ${stats.totalTrials} essais` : 
-                                                            'Aucune donnée enregistrée'
-                                                        }
-                                                    </div>
-                                                </div>
-                                                <button class="btn btn-danger" style="padding: 10px 20px;" onclick="deleteStudent('${student.id}')">
-                                                    🗑️ Supprimer
-                                                </button>
-                                            </div>
-                                        </div>
-                                    `;
-                                }).join('')}
-                            </div>
-                        </div>
-                        
-                        <div style="margin: 40px 0; padding: 20px; background: #fef2f2; border-radius: 15px; border-left: 4px solid #dc2626;">
-                            <h3 style="color: #991b1b; margin-bottom: 15px;">⚠️ Zone dangereuse</h3>
-                            <p style="color: #6b7280; margin-bottom: 15px;">
-                                Les actions ci-dessous sont irréversibles. Soyez certain avant de cliquer.
-                            </p>
-                            <button class="btn btn-danger" onclick="deleteAllData()">
-                                🗑️ Supprimer toutes les données (élèves + résultats)
-                            </button>
-                        </div>
-                    ` : `
-                        <div style="text-align: center; padding: 60px 20px; color: #6b7280;">
-                            <div style="font-size: 3rem; margin-bottom: 20px;">👥</div>
-                            <h3>Aucun élève enregistré</h3>
-                            <p style="margin-top: 10px;">Ajoutez votre premier élève ci-dessus pour commencer.</p>
-                        </div>
-                    `}
-                </div>
-            `;
-        }
-
-        // Vue des statistiques
+        // Vue stats
         function renderStatisticsView() {
             if (students.length === 0) {
                 return `
-                    <div class="header">
-                        <div class="emoji">📊</div>
-                        <h1>Statistiques</h1>
-                        <p>Vue d'ensemble par élève</p>
-                    </div>
+                    <div class="header"><div class="emoji">📊</div><h1>Statistiques</h1></div>
                     <div class="card">
-                        <button class="btn btn-secondary" onclick="backToLevels()">← Retour à l'accueil</button>
-                        <div style="text-align: center; padding: 60px 20px; color: #6b7280;">
-                            <div style="font-size: 3rem; margin-bottom: 20px;">👥</div>
-                            <h3>Aucun élève enregistré</h3>
-                            <p style="margin-top: 10px;">Ajoutez des élèves dans les situations pour voir leurs statistiques ici.</p>
+                        <button class="btn btn-secondary" onclick="backToLevels()">← Retour</button>
+                        <div style="text-align: center; padding: 60px 20px;">
+                            <div style="font-size: 3rem;">👥</div>
+                            <h3>Aucun élève</h3>
                         </div>
                     </div>
                 `;
             }
-
+            
             return `
-                <div class="header">
-                    <div class="emoji">📊</div>
-                    <h1>Statistiques</h1>
-                    <p>Vue d'ensemble par élève</p>
-                </div>
+                <div class="header"><div class="emoji">📊</div><h1>Statistiques</h1></div>
                 <div class="card">
-                    <button class="btn btn-secondary" onclick="backToLevels()">← Retour à l'accueil</button>
-                    <h2 style="margin: 20px 0; color: #1f2937;">${students.length} élève(s) suivi(s)</h2>
-                    
+                    <button class="btn btn-secondary" onclick="backToLevels()">← Retour</button>
+                    <h2 style="margin: 20px 0;">${students.length} élève(s)</h2>
                     <div class="stats-grid">
                         ${students.map(student => {
-                            const studentStats = calculateStudentStats(student.id);
-                            const overallRate = studentStats.totalTrials > 0 ? 
-                                Math.round((studentStats.totalSuccesses / studentStats.totalTrials) * 100) : 0;
-                            const overallClass = overallRate >= 70 ? 'high' : overallRate >= 40 ? 'medium' : 'low';
+                            const stats = calculateStudentStats(student.id);
+                            const rate = stats.totalTrials > 0 ? Math.round((stats.totalSuccesses / stats.totalTrials) * 100) : 0;
+                            const rateClass = rate >= 70 ? 'high' : rate >= 40 ? 'medium' : 'low';
                             
                             return `
                                 <div class="stat-card">
-                                    <div class="stat-header">
+                                    <div style="display: flex; justify-content: space-between; margin-bottom: 15px;">
                                         <div class="stat-student-name">${student.firstname} ${student.lastname}</div>
-                                        <div class="stat-overall ${overallClass}">${overallRate}%</div>
+                                        <div class="success-rate ${rateClass}">${rate}%</div>
                                     </div>
-                                    
-                                    <div style="font-size: 0.9rem; color: #6b7280; margin-bottom: 20px;">
-                                        ${studentStats.totalSuccesses} réussites / ${studentStats.totalTrials} essais
-                                    </div>
-                                    
-                                    ${studentStats.acquired.length > 0 ? `
+                                    <div style="color: #6b7280; margin-bottom: 20px;">${stats.totalSuccesses} / ${stats.totalTrials} essais</div>
+                                    ${stats.acquired.length > 0 ? `
                                         <div class="stat-section">
-                                            <div class="stat-section-title acquired">
-                                                ✅ Points acquis (≥70%)
-                                            </div>
-                                            ${studentStats.acquired.map(item => `
+                                            <div class="stat-section-title acquired">✅ Acquis (≥70%)</div>
+                                            ${stats.acquired.map(item => `
                                                 <div class="stat-item">
-                                                    <div class="stat-item-name">${item.name}</div>
-                                                    <div class="stat-item-rate success-color">${item.rate}%</div>
+                                                    <div>${item.name}</div>
+                                                    <div class="success-color">${item.rate}%</div>
                                                 </div>
                                             `).join('')}
                                         </div>
                                     ` : ''}
-                                    
-                                    ${studentStats.toImprove.length > 0 ? `
+                                    ${stats.toImprove.length > 0 ? `
                                         <div class="stat-section">
-                                            <div class="stat-section-title to-improve">
-                                                📈 À améliorer (<70%)
-                                            </div>
-                                            ${studentStats.toImprove.map(item => `
+                                            <div class="stat-section-title to-improve">📈 À améliorer (<70%)</div>
+                                            ${stats.toImprove.map(item => `
                                                 <div class="stat-item">
-                                                    <div class="stat-item-name">${item.name}</div>
-                                                    <div class="stat-item-rate fail-color">${item.rate}%</div>
+                                                    <div>${item.name}</div>
+                                                    <div class="fail-color">${item.rate}%</div>
                                                 </div>
                                             `).join('')}
-                                        </div>
-                                    ` : ''}
-                                    
-                                    ${studentStats.acquired.length === 0 && studentStats.toImprove.length === 0 ? `
-                                        <div style="text-align: center; padding: 20px; color: #6b7280;">
-                                            Aucune donnée enregistrée
                                         </div>
                                     ` : ''}
                                 </div>
@@ -958,12 +937,268 @@ ${situation.consignes}
             `;
         }
 
-        // Calculer les statistiques d'un élève
+        // Vue gestion élèves
+        function renderManageStudentsView() {
+            return `
+                <div class="header"><div class="emoji">👥</div><h1>Gestion des élèves</h1></div>
+                <div class="card">
+                    <button class="btn btn-secondary" onclick="backToLevels()">← Retour</button>
+                    
+                    <div style="margin: 30px 0; padding: 20px; background: #eff6ff; border-radius: 15px;">
+                        <h3>➕ Ajouter un élève</h3>
+                        <div class="student-input">
+                            <input type="text" id="student-firstname" placeholder="Prénom" />
+                            <input type="text" id="student-lastname" placeholder="Nom" />
+                            <button class="btn btn-primary" onclick="addStudentFromManage()">Ajouter</button>
+                        </div>
+                    </div>
+                    
+                    ${students.length > 0 ? `
+                        <h3 style="margin: 20px 0;">📋 ${students.length} élève(s)</h3>
+                        <div class="student-list">
+                            ${students.map(student => {
+                                const stats = calculateStudentStats(student.id);
+                                return `
+                                    <div class="student-item">
+                                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                                            <div>
+                                                <div class="student-name">${student.firstname} ${student.lastname}</div>
+                                                <div style="font-size: 0.85rem; color: #6b7280; margin-top: 5px;">
+                                                    ${stats.totalTrials > 0 ? `${stats.totalSuccesses} / ${stats.totalTrials} essais` : 'Aucune donnée'}
+                                                </div>
+                                            </div>
+                                            <button class="btn btn-danger" style="padding: 10px 20px;" onclick="deleteStudent('${student.id}')">🗑️</button>
+                                        </div>
+                                    </div>
+                                `;
+                            }).join('')}
+                        </div>
+                        
+                        <div style="margin: 40px 0; padding: 20px; background: #fef2f2; border-radius: 15px; border-left: 4px solid #dc2626;">
+                            <h3 style="color: #991b1b;">⚠️ Zone dangereuse</h3>
+                            <p style="color: #6b7280; margin: 10px 0;">Action irréversible</p>
+                            <button class="btn btn-danger" onclick="deleteAllData()">🗑️ Tout supprimer</button>
+                        </div>
+                    ` : '<div style="text-align: center; padding: 40px; color: #6b7280;">Aucun élève</div>'}
+                </div>
+            `;
+        }
+
+        // Vue choix niveau échauffement
+        function renderWarmupLevelView() {
+            return `
+                <div class="header">
+                    <div class="emoji">🔥</div>
+                    <h1>Échauffement Badminton</h1>
+                    <p>Sélectionnez le niveau de la classe</p>
+                </div>
+                <div class="card">
+                    <button class="btn btn-secondary" onclick="backToLevels()">← Retour</button>
+                    <h2 style="margin: 20px 0;">Niveau de la classe :</h2>
+                    <div class="level-selector">
+                        <button class="level-btn level-1-2" onclick="selectWarmupLevel(2)">
+                            <div style="font-size: 1.5rem;">🎯</div>
+                            <div>Niveau 2</div>
+                            <div style="font-size: 0.9rem; opacity: 0.9; margin-top: 5px;">3ème / PM</div>
+                        </button>
+                        <button class="level-btn level-3" onclick="selectWarmupLevel(3)">
+                            <div style="font-size: 1.5rem;">⭐</div>
+                            <div>Niveau 3</div>
+                            <div style="font-size: 0.9rem; opacity: 0.9; margin-top: 5px;">CAP</div>
+                        </button>
+                        <button class="level-btn level-4-5" onclick="selectWarmupLevel(4)">
+                            <div style="font-size: 1.5rem;">🏆</div>
+                            <div>Niveaux 4-5</div>
+                            <div style="font-size: 0.9rem; opacity: 0.9; margin-top: 5px;">BAC PRO</div>
+                        </button>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Vue échauffement
+        function renderWarmupView() {
+            const levelClass = warmupLevel === 2 ? 'level-2' : warmupLevel === 3 ? 'level-3' : 'level-4-5';
+            const levelText = warmupLevel === 2 ? '3ème / PM' : warmupLevel === 3 ? 'CAP' : 'BAC PRO';
+            const progress = ((warmupStep / 6) * 100);
+            
+            let content = '';
+            
+            // Étape 0 : Mobilisation articulaire
+            if (warmupStep === 0) {
+                const joints = ['Épaules', 'Coudes', 'Poignets', 'Bassin', 'Genoux', 'Chevilles'];
+                content = `
+                    <div class="warmup-step">
+                        <div class="warmup-step-title">⚙️ Mobilisation articulaire</div>
+                        <p style="color: #6b7280; margin-bottom: 20px;">Mobilisez chaque articulation en douceur</p>
+                        <div class="checklist">
+                            ${joints.map(joint => `
+                                <div class="checklist-item ${checkedJoints.includes(joint) ? 'checked' : ''}" onclick="toggleJoint('${joint}')">
+                                    <div class="checkbox">${checkedJoints.includes(joint) ? '✓' : ''}</div>
+                                    <div style="font-weight: bold;">${joint}</div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                `;
+            }
+            
+            // Étape 1 : Échauffement général
+            else if (warmupStep === 1) {
+                const exercise = warmupExercises[currentExerciseIndex];
+                content = `
+                    <div class="warmup-step">
+                        <div class="warmup-step-title">🏃 Échauffement général</div>
+                        <div class="exercise-card">
+                            <div style="font-size: 5rem;">${exercise.emoji}</div>
+                            <div class="exercise-name">${exercise.name}</div>
+                            <p style="color: #6b7280;">${exercise.description}</p>
+                            <div class="timer-display" id="timer">2:00</div>
+                            <div class="timer-controls">
+                                <button class="btn btn-success" onclick="startExerciseTimer()">▶️ Démarrer</button>
+                                <button class="btn btn-secondary" onclick="pauseTimer()">⏸️ Pause</button>
+                            </div>
+                            <div style="margin-top: 20px;">
+                                <button class="btn btn-primary" onclick="nextExercise()">Exercice suivant →</button>
+                            </div>
+                            <div style="margin-top: 10px; color: #6b7280;">Exercice ${currentExerciseIndex + 1} / 4</div>
+                        </div>
+                    </div>
+                `;
+            }
+            
+            // Étape 2 : Avec raquette
+            else if (warmupStep === 2) {
+                content = `
+                    <div class="warmup-step">
+                        <div class="warmup-step-title">🎾 Avec raquette (sans volant)</div>
+                        <p style="color: #6b7280; margin-bottom: 15px;">Mouvements avec la raquette, rotations toutes les 1:30</p>
+                        ${rotationCount > 0 ? `<div class="rotation-indicator">🔄 Rotation ${rotationCount} / 4</div>` : ''}
+                        <div class="timer-display" id="timer">6:00</div>
+                        <div class="timer-controls">
+                            <button class="btn btn-success" onclick="startRotationTimer(360)">▶️ Démarrer</button>
+                            <button class="btn btn-secondary" onclick="pauseTimer()">⏸️ Pause</button>
+                            <button class="btn btn-danger" onclick="resetRotationTimer(360)">↺ Reset</button>
+                        </div>
+                    </div>
+                `;
+            }
+            
+            // Étape 3 : Zone avant
+            else if (warmupStep === 3) {
+                content = `
+                    <div class="warmup-step">
+                        <div class="warmup-step-title">🏸 Zone avant - Main basse & Drive</div>
+                        <p style="color: #6b7280; margin-bottom: 15px;">Échanges courts en zone avant, rotations toutes les 1:30</p>
+                        ${rotationCount > 0 ? `<div class="rotation-indicator">🔄 Rotation ${rotationCount} / 4</div>` : ''}
+                        <div class="timer-display" id="timer">6:00</div>
+                        <div class="timer-controls">
+                            <button class="btn btn-success" onclick="startRotationTimer(360)">▶️ Démarrer</button>
+                            <button class="btn btn-secondary" onclick="pauseTimer()">⏸️ Pause</button>
+                            <button class="btn btn-danger" onclick="resetRotationTimer(360)">↺ Reset</button>
+                        </div>
+                    </div>
+                `;
+            }
+            
+            // Étape 4 : Zone centrale
+            else if (warmupStep === 4) {
+                content = `
+                    <div class="warmup-step">
+                        <div class="warmup-step-title">🏸 Zone centrale - Au-dessus de la tête</div>
+                        <p style="color: #6b7280; margin-bottom: 15px;">Volants pris au-dessus, demi-terrain puis terrain complet</p>
+                        ${rotationCount > 0 ? `<div class="rotation-indicator">🔄 Rotation ${rotationCount} / 4</div>` : ''}
+                        <div class="timer-display" id="timer">6:00</div>
+                        <div class="timer-controls">
+                            <button class="btn btn-success" onclick="startRotationTimer(360)">▶️ Démarrer</button>
+                            <button class="btn btn-secondary" onclick="pauseTimer()">⏸️ Pause</button>
+                            <button class="btn btn-danger" onclick="resetRotationTimer(360)">↺ Reset</button>
+                        </div>
+                    </div>
+                `;
+            }
+            
+            // Étape 5 : Fond de court (adapté niveau)
+            else if (warmupStep === 5) {
+                let instructions = '';
+                if (warmupLevel === 2) {
+                    instructions = '⬆️ Dégagements main haute vers le fond de court';
+                } else if (warmupLevel === 3) {
+                    instructions = '🎯 Alterner : amorti proche filet puis dégagement fond de court';
+                } else {
+                    instructions = '🔄 Enchainer : court/court/long/long<br>Service court → Amorti → Lob → Dégagement → Amorti fond → Contre-amorti';
+                }
+                
+                content = `
+                    <div class="warmup-step">
+                        <div class="warmup-step-title">🏸 Fond de court</div>
+                        <span class="level-badge ${levelClass}">${levelText}</span>
+                        <div style="color: #1f2937; font-size: 1.1rem; margin: 15px 0;">${instructions}</div>
+                        ${rotationCount > 0 ? `<div class="rotation-indicator">🔄 Rotation ${rotationCount} / 4</div>` : ''}
+                        <div class="timer-display" id="timer">6:00</div>
+                        <div class="timer-controls">
+                            <button class="btn btn-success" onclick="startRotationTimer(360)">▶️ Démarrer</button>
+                            <button class="btn btn-secondary" onclick="pauseTimer()">⏸️ Pause</button>
+                            <button class="btn btn-danger" onclick="resetRotationTimer(360)">↺ Reset</button>
+                        </div>
+                    </div>
+                `;
+            }
+            
+            // Étape 6 : Échanges finaux (adapté niveau)
+            else if (warmupStep === 6) {
+                let instructions = '';
+                let extra = '';
+                if (warmupLevel === 2) {
+                    instructions = '↗️ Échanges en diagonale : coup droit puis revers';
+                } else if (warmupLevel === 3) {
+                    instructions = '↗️ Échanges en diagonale';
+                    extra = '<button class="btn btn-primary" style="margin-top: 15px;" onclick="alert(\'Passez au jeu du 8 si l élève est prêt !\')">Option : Jeu du 8</button>';
+                } else {
+                    instructions = '🔢 Jeu du 8<br>Le serveur joue en diagonale, le receveur décroise (renvoie toujours du même côté)';
+                }
+                
+                content = `
+                    <div class="warmup-step">
+                        <div class="warmup-step-title">🏸 Échanges finaux</div>
+                        <span class="level-badge ${levelClass}">${levelText}</span>
+                        <div style="color: #1f2937; font-size: 1.1rem; margin: 15px 0;">${instructions}</div>
+                        ${extra}
+                        ${rotationCount > 0 ? `<div class="rotation-indicator">🔄 Rotation ${rotationCount} / 4</div>` : ''}
+                        <div class="timer-display" id="timer">6:00</div>
+                        <div class="timer-controls">
+                            <button class="btn btn-success" onclick="startRotationTimer(360)">▶️ Démarrer</button>
+                            <button class="btn btn-secondary" onclick="pauseTimer()">⏸️ Pause</button>
+                            <button class="btn btn-danger" onclick="resetRotationTimer(360)">↺ Reset</button>
+                        </div>
+                    </div>
+                `;
+            }
+            
+            return `
+                <div class="header">
+                    <div class="emoji">🔥</div>
+                    <h1>Échauffement</h1>
+                    <p>Étape ${warmupStep + 1} / 7</p>
+                </div>
+                <div class="card">
+                    <button class="btn btn-secondary" onclick="exitWarmup()">← Quitter</button>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: ${progress}%"></div>
+                    </div>
+                    ${content}
+                    <div class="step-navigation">
+                        <button class="btn btn-secondary" onclick="prevWarmupStep()" ${warmupStep === 0 ? 'disabled' : ''}>← Précédent</button>
+                        <button class="btn btn-primary" onclick="nextWarmupStep()">${warmupStep === 6 ? '✓ Terminer' : 'Suivant →'}</button>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Stats élève
         function calculateStudentStats(studentId) {
-            let totalSuccesses = 0;
-            let totalTrials = 0;
-            const acquired = [];
-            const toImprove = [];
+            let totalSuccesses = 0, totalTrials = 0;
+            const acquired = [], toImprove = [];
             
             Object.keys(results).forEach(situationKey => {
                 const [chapterId, situationIndex] = situationKey.split('-');
@@ -982,28 +1217,17 @@ ${situation.consignes}
                     totalSuccesses += successes;
                     totalTrials += trials;
                     
-                    const item = {
-                        name: `${chapter.title} - ${situation.title}`,
-                        rate: rate
-                    };
+                    const item = { name: `${chapter.title} - ${situation.title}`, rate };
                     
-                    if (rate >= 70) {
-                        acquired.push(item);
-                    } else {
-                        toImprove.push(item);
-                    }
+                    if (rate >= 70) acquired.push(item);
+                    else toImprove.push(item);
                 }
             });
             
-            return {
-                totalSuccesses,
-                totalTrials,
-                acquired,
-                toImprove
-            };
+            return { totalSuccesses, totalTrials, acquired, toImprove };
         }
 
-        // Fonctions de navigation
+        // Navigation
         function selectLevel(level) {
             selectedLevel = level;
             currentView = 'chapters';
@@ -1033,6 +1257,20 @@ ${situation.consignes}
             render();
         }
 
+        function startWarmup() {
+            currentView = 'warmup-level';
+            render();
+        }
+
+        function selectWarmupLevel(level) {
+            warmupLevel = level;
+            warmupStep = 0;
+            checkedJoints = [];
+            currentExerciseIndex = 0;
+            currentView = 'warmup';
+            render();
+        }
+
         function backToLevels() {
             currentView = 'levels';
             render();
@@ -1048,18 +1286,67 @@ ${situation.consignes}
             render();
         }
 
-        // Gestion des élèves
+        function exitWarmup() {
+            stopTimer();
+            warmupStep = 0;
+            currentView = 'levels';
+            render();
+        }
+
+        function prevWarmupStep() {
+            if (warmupStep > 0) {
+                stopTimer();
+                warmupStep--;
+                rotationCount = 0;
+                render();
+            }
+        }
+
+        function nextWarmupStep() {
+            if (warmupStep < 6) {
+                stopTimer();
+                warmupStep++;
+                rotationCount = 0;
+                if (warmupStep === 1) currentExerciseIndex = 0;
+                render();
+            } else {
+                exitWarmup();
+            }
+        }
+
+        // Échauffement
+        function toggleJoint(joint) {
+            const index = checkedJoints.indexOf(joint);
+            if (index > -1) checkedJoints.splice(index, 1);
+            else checkedJoints.push(joint);
+            render();
+        }
+
+        function nextExercise() {
+            stopTimer();
+            if (currentExerciseIndex < 3) {
+                currentExerciseIndex++;
+                render();
+            } else {
+                nextWarmupStep();
+            }
+        }
+
+        function startExerciseTimer() {
+            startTimer(120);
+        }
+
+        // Élèves
         function addStudent() {
             const firstname = document.getElementById('student-firstname').value.trim();
             const lastname = document.getElementById('student-lastname').value.trim();
             
             if (firstname && lastname) {
-                const student = {
+                students.push({
                     id: Date.now().toString(),
-                    firstname: firstname,
-                    lastname: lastname
-                };
-                students.push(student);
+                    firstname,
+                    lastname
+                });
                 localStorage.setItem('badminton_students', JSON.stringify(students));
                 render();
             }
@@ -1070,16 +1357,15 @@ ${situation.consignes}
             const lastname = document.getElementById('student-lastname').value.trim();
             
             if (firstname && lastname) {
-                const student = {
+                students.push({
                     id: Date.now().toString(),
-                    firstname: firstname,
-                    lastname: lastname
-                };
-                students.push(student);
+                    firstname,
+                    lastname
+                });
                 localStorage.setItem('badminton_students', JSON.stringify(students));
                 render();
             } else {
-                alert('Veuillez remplir le prénom et le nom');
+                alert('Remplissez prénom et nom');
             }
         }
 
@@ -1087,14 +1373,10 @@ ${situation.consignes}
             const student = students.find(s => s.id === studentId);
             if (!student) return;
             
-            const confirmMsg = `Êtes-vous sûr de vouloir supprimer ${student.firstname} ${student.lastname} ?\n\n⚠️ Toutes ses données (résultats dans toutes les situations) seront définitivement supprimées.`;
-            
-            if (confirm(confirmMsg)) {
-                // Supprimer l'élève de la liste
+            if (confirm(`Supprimer ${student.firstname} ${student.lastname} ?\n\nToutes ses données seront supprimées.`)) {
                 students = students.filter(s => s.id !== studentId);
                 localStorage.setItem('badminton_students', JSON.stringify(students));
                 
-                // Supprimer tous les résultats de cet élève
                 Object.keys(results).forEach(situationKey => {
                     if (results[situationKey][studentId]) {
                         delete results[situationKey][studentId];
@@ -1107,23 +1389,19 @@ ${situation.consignes}
         }
 
         function deleteAllData() {
-            const confirmMsg = `⚠️ ATTENTION ⚠️\n\nVoulez-vous vraiment supprimer TOUTES les données ?\n\n- Tous les élèves (${students.length})\n- Tous les résultats de toutes les situations\n\nCette action est IRRÉVERSIBLE !`;
-            
-            if (confirm(confirmMsg)) {
-                const doubleConfirm = confirm('Dernière confirmation : Êtes-vous VRAIMENT sûr ?\n\nTout sera supprimé définitivement.');
-                
-                if (doubleConfirm) {
+            if (confirm(`⚠️ Supprimer TOUTES les données ?\n\n- ${students.length} élèves\n- Tous les résultats\n\nIRRÉVERSIBLE !`)) {
+                if (confirm('Dernière confirmation ?')) {
                     students = [];
                     results = {};
                     localStorage.setItem('badminton_students', JSON.stringify(students));
                     localStorage.setItem('badminton_results', JSON.stringify(results));
-                    alert('✅ Toutes les données ont été supprimées.');
+                    alert('✅ Données supprimées');
                     render();
                 }
             }
         }
 
-        // Gestion des essais
+        // Résultats
         function addSuccess(studentId) {
             const situationKey = `${selectedChapter}-${selectedSituation}`;
             if (!results[situationKey]) results[situationKey] = {};
@@ -1145,7 +1423,7 @@ ${situation.consignes}
         }
 
         function resetStudentResults(studentId) {
-            if (confirm('Réinitialiser les résultats de cet élève pour cette situation ?')) {
+            if (confirm('Réinitialiser les résultats de cet élève ?')) {
                 const situationKey = `${selectedChapter}-${selectedSituation}`;
                 if (results[situationKey] && results[situationKey][studentId]) {
                     results[situationKey][studentId] = { successes: 0, failures: 0 };
@@ -1155,21 +1433,101 @@ ${situation.consignes}
             }
         }
 
-        // Attacher les événements
-        function attachEventListeners() {
-            // Les événements onclick sont déjà dans le HTML
+        // Minuteur
+        function startTimer(duration) {
+            stopTimer();
+            timeRemaining = duration;
+            totalTime = duration;
+            updateTimerDisplay();
+            
+            timerInterval = setInterval(() => {
+                timeRemaining--;
+                updateTimerDisplay();
+                
+                if (timeRemaining <= 0) {
+                    stopTimer();
+                    playLongBeep();
+                }
+            }, 1000);
         }
 
-        // Enregistrer le Service Worker
+        function startRotationTimer(duration) {
+            stopTimer();
+            timeRemaining = duration;
+            totalTime = duration;
+            rotationCount = 0;
+            updateTimerDisplay();
+            
+            timerInterval = setInterval(() => {
+                timeRemaining--;
+                updateTimerDisplay();
+                
+                // Bip toutes les 90 secondes
+                if (timeRemaining > 0 && (totalTime - timeRemaining) % 90 === 0 && timeRemaining !== totalTime) {
+                    playShortBeep();
+                    rotationCount++;
+                    render();
+                }
+                
+                if (timeRemaining <= 0) {
+                    stopTimer();
+                    playLongBeep();
+                }
+            }, 1000);
+        }
+
+        function pauseTimer() {
+            if (timerInterval) {
+                clearInterval(timerInterval);
+                timerInterval = null;
+            }
+        }
+
+        function resetTimer(duration) {
+            stopTimer();
+            timeRemaining = duration;
+            totalTime = duration;
+            updateTimerDisplay();
+        }
+
+        function resetRotationTimer(duration) {
+            stopTimer();
+            rotationCount = 0;
+            timeRemaining = duration;
+            totalTime = duration;
+            updateTimerDisplay();
+        }
+
+        function stopTimer() {
+            if (timerInterval) {
+                clearInterval(timerInterval);
+                timerInterval = null;
+            }
+        }
+
+        function updateTimerDisplay() {
+            const timerEl = document.getElementById('timer');
+            if (timerEl) {
+                const minutes = Math.floor(timeRemaining / 60);
+                const seconds = timeRemaining % 60;
+                timerEl.textContent = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+                
+                timerEl.classList.remove('warning', 'danger');
+                if (timeRemaining <= 10) timerEl.classList.add('danger');
+                else if (timeRemaining <= 30) timerEl.classList.add('warning');
+            }
+        }
+
+        // Service Worker
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
                 navigator.serviceWorker.register('./service-worker.js')
-                    .then(reg => console.log('✅ Service Worker enregistré'))
+                    .then(reg => console.log('✅ Service Worker'))
                     .catch(err => console.log('Service Worker:', err));
             });
         }
 
-        // Démarrer l'application
+        // Démarrer
         render();
     </script>
 </body>
