@@ -1020,7 +1020,7 @@
         function renderWarmupView() {
             const levelClass = warmupLevel === 2 ? 'level-2' : warmupLevel === 3 ? 'level-3' : 'level-4-5';
             const levelText = warmupLevel === 2 ? '3ème / PM' : warmupLevel === 3 ? 'CAP' : 'BAC PRO';
-            const progress = ((warmupStep / 6) * 100);
+            const progress = ((warmupStep / 5) * 100);
             
             let content = '';
             
@@ -1043,49 +1043,42 @@
                 `;
             }
             
-            // Étape 1 : Échauffement général
+            // Étape 1 : Trottiner + Échauffement général (3 min total)
             else if (warmupStep === 1) {
-                const exercise = warmupExercises[currentExerciseIndex];
+                const exercises = [
+                    { name: "Trottiner", emoji: "🏃", description: "Trottiner en continu, rythme modéré" },
+                    { name: "Montées de genoux", emoji: "🦵", description: "Montez les genoux le plus haut possible" },
+                    { name: "Talons-fesses", emoji: "🦶", description: "Ramenez les talons vers les fesses" },
+                    { name: "Pas chassés", emoji: "↔️", description: "Déplacements latéraux rapides" },
+                    { name: "Jumping jacks", emoji: "🤸", description: "Sauts avec écart des bras et jambes" }
+                ];
+                const exercise = exercises[currentExerciseIndex];
+                const duration = currentExerciseIndex === 0 ? "1:30" : "0:30";
+                const seconds = currentExerciseIndex === 0 ? 90 : 30;
+                
                 content = `
                     <div class="warmup-step">
-                        <div class="warmup-step-title">🏃 Échauffement général</div>
+                        <div class="warmup-step-title">🏃 Échauffement général (3 min total)</div>
                         <div class="exercise-card">
                             <div style="font-size: 5rem;">${exercise.emoji}</div>
                             <div class="exercise-name">${exercise.name}</div>
                             <p style="color: #6b7280;">${exercise.description}</p>
-                            <div class="timer-display" id="timer">2:00</div>
+                            <div class="timer-display" id="timer">${duration}</div>
                             <div class="timer-controls">
-                                <button class="btn btn-success" onclick="startExerciseTimer()">▶️ Démarrer</button>
+                                <button class="btn btn-success" onclick="startExerciseTimer(${seconds})">▶️ Démarrer</button>
                                 <button class="btn btn-secondary" onclick="pauseTimer()">⏸️ Pause</button>
                             </div>
                             <div style="margin-top: 20px;">
                                 <button class="btn btn-primary" onclick="nextExercise()">Exercice suivant →</button>
                             </div>
-                            <div style="margin-top: 10px; color: #6b7280;">Exercice ${currentExerciseIndex + 1} / 4</div>
+                            <div style="margin-top: 10px; color: #6b7280;">Exercice ${currentExerciseIndex + 1} / 5</div>
                         </div>
                     </div>
                 `;
             }
             
-            // Étape 2 : Avec raquette
+            // Étape 2 : Zone avant
             else if (warmupStep === 2) {
-                content = `
-                    <div class="warmup-step">
-                        <div class="warmup-step-title">🎾 Avec raquette (sans volant)</div>
-                        <p style="color: #6b7280; margin-bottom: 15px;">Mouvements avec la raquette, rotations toutes les 1:30</p>
-                        ${rotationCount > 0 ? `<div class="rotation-indicator">🔄 Rotation ${rotationCount} / 4</div>` : ''}
-                        <div class="timer-display" id="timer">6:00</div>
-                        <div class="timer-controls">
-                            <button class="btn btn-success" onclick="startRotationTimer(360)">▶️ Démarrer</button>
-                            <button class="btn btn-secondary" onclick="pauseTimer()">⏸️ Pause</button>
-                            <button class="btn btn-danger" onclick="resetRotationTimer(360)">↺ Reset</button>
-                        </div>
-                    </div>
-                `;
-            }
-            
-            // Étape 3 : Zone avant
-            else if (warmupStep === 3) {
                 content = `
                     <div class="warmup-step">
                         <div class="warmup-step-title">🏸 Zone avant - Main basse & Drive</div>
@@ -1101,12 +1094,12 @@
                 `;
             }
             
-            // Étape 4 : Zone centrale
-            else if (warmupStep === 4) {
+            // Étape 3 : Zone centrale - échanges main haute
+            else if (warmupStep === 3) {
                 content = `
                     <div class="warmup-step">
-                        <div class="warmup-step-title">🏸 Zone centrale - Au-dessus de la tête</div>
-                        <p style="color: #6b7280; margin-bottom: 15px;">Volants pris au-dessus, demi-terrain puis terrain complet</p>
+                        <div class="warmup-step-title">🏸 Zone centrale - Échanges main haute</div>
+                        <p style="color: #6b7280; margin-bottom: 15px;">Échanges en zone centrale, main haute, demi-terrain puis terrain complet</p>
                         ${rotationCount > 0 ? `<div class="rotation-indicator">🔄 Rotation ${rotationCount} / 4</div>` : ''}
                         <div class="timer-display" id="timer">6:00</div>
                         <div class="timer-controls">
@@ -1118,20 +1111,20 @@
                 `;
             }
             
-            // Étape 5 : Fond de court (adapté niveau)
-            else if (warmupStep === 5) {
+            // Étape 4 : Jeu court et long (adapté niveau)
+            else if (warmupStep === 4) {
                 let instructions = '';
                 if (warmupLevel === 2) {
-                    instructions = '⬆️ Dégagements main haute vers le fond de court';
+                    instructions = '⬆️ Alterner volants courts (zone avant) et volants longs (dégagements fond de court)';
                 } else if (warmupLevel === 3) {
-                    instructions = '🎯 Alterner : amorti proche filet puis dégagement fond de court';
+                    instructions = '🎯 Viser zone avant (amorti) puis zone arrière (dégagement)<br>Alterner : amorti proche filet → dégagement fond de court';
                 } else {
-                    instructions = '🔄 Enchainer : court/court/long/long<br>Service court → Amorti → Lob → Dégagement → Amorti fond → Contre-amorti';
+                    instructions = '🔄 Enchainer court/court/long/long<br>Service court → Amorti → Lob → Dégagement → Amorti fond → Contre-amorti → Recommencer';
                 }
                 
                 content = `
                     <div class="warmup-step">
-                        <div class="warmup-step-title">🏸 Fond de court</div>
+                        <div class="warmup-step-title">🏸 Jeu court et long</div>
                         <span class="level-badge ${levelClass}">${levelText}</span>
                         <div style="color: #1f2937; font-size: 1.1rem; margin: 15px 0;">${instructions}</div>
                         ${rotationCount > 0 ? `<div class="rotation-indicator">🔄 Rotation ${rotationCount} / 4</div>` : ''}
@@ -1145,22 +1138,22 @@
                 `;
             }
             
-            // Étape 6 : Échanges finaux (adapté niveau)
-            else if (warmupStep === 6) {
+            // Étape 5 : Jeu en diagonale (adapté niveau)
+            else if (warmupStep === 5) {
                 let instructions = '';
                 let extra = '';
                 if (warmupLevel === 2) {
-                    instructions = '↗️ Échanges en diagonale : coup droit puis revers';
+                    instructions = '↗️ Échanges en diagonale : coup droit puis revers<br>Chaque joueur envoie toujours en diagonale';
                 } else if (warmupLevel === 3) {
-                    instructions = '↗️ Échanges en diagonale';
-                    extra = '<button class="btn btn-primary" style="margin-top: 15px;" onclick="alert(\'Passez au jeu du 8 si l élève est prêt !\')">Option : Jeu du 8</button>';
+                    instructions = '↗️ Échanges en diagonale classique<br>Les deux joueurs jouent en diagonale';
+                    extra = '<div style="margin-top: 15px; padding: 15px; background: #fef3c7; border-radius: 10px;"><strong>Option avancée :</strong> Jeu du 8<br>Le serveur joue en diagonale, le receveur décroise (renvoie toujours du même côté)</div>';
                 } else {
-                    instructions = '🔢 Jeu du 8<br>Le serveur joue en diagonale, le receveur décroise (renvoie toujours du même côté)';
+                    instructions = '🔢 Jeu du 8<br>Le serveur joue en diagonale, le receveur décroise (renvoie toujours du même côté)<br>Travail du placement et des trajectoires';
                 }
                 
                 content = `
                     <div class="warmup-step">
-                        <div class="warmup-step-title">🏸 Échanges finaux</div>
+                        <div class="warmup-step-title">🏸 Jeu en diagonale</div>
                         <span class="level-badge ${levelClass}">${levelText}</span>
                         <div style="color: #1f2937; font-size: 1.1rem; margin: 15px 0;">${instructions}</div>
                         ${extra}
@@ -1179,7 +1172,7 @@
                 <div class="header">
                     <div class="emoji">🔥</div>
                     <h1>Échauffement</h1>
-                    <p>Étape ${warmupStep + 1} / 7</p>
+                    <p>Étape ${warmupStep + 1} / 6</p>
                 </div>
                 <div class="card">
                     <button class="btn btn-secondary" onclick="exitWarmup()">← Quitter</button>
@@ -1189,7 +1182,7 @@
                     ${content}
                     <div class="step-navigation">
                         <button class="btn btn-secondary" onclick="prevWarmupStep()" ${warmupStep === 0 ? 'disabled' : ''}>← Précédent</button>
-                        <button class="btn btn-primary" onclick="nextWarmupStep()">${warmupStep === 6 ? '✓ Terminer' : 'Suivant →'}</button>
+                        <button class="btn btn-primary" onclick="nextWarmupStep()">${warmupStep === 5 ? '✓ Terminer' : 'Suivant →'}</button>
                     </div>
                 </div>
             `;
@@ -1303,7 +1296,7 @@
         }
 
         function nextWarmupStep() {
-            if (warmupStep < 6) {
+            if (warmupStep < 5) {
                 stopTimer();
                 warmupStep++;
                 rotationCount = 0;
@@ -1324,7 +1317,7 @@
 
         function nextExercise() {
             stopTimer();
-            if (currentExerciseIndex < 3) {
+            if (currentExerciseIndex < 4) {
                 currentExerciseIndex++;
                 render();
             } else {
@@ -1332,8 +1325,8 @@
             }
         }
 
-        function startExerciseTimer() {
-            startTimer(120);
+        function startExerciseTimer(seconds) {
+            startTimer(seconds);
         }
 
         // Élèves
